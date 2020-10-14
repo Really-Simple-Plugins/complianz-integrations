@@ -23,4 +23,4 @@ If you're using Complianz and want to extend the functionality with an integrati
 5. Open FTP - and go to wp-content/mu-plugins/ drop you file here. If the folder mu-plugins does not exist, simple add a new folder.
 6. Check your site if the plugin has the desired functionality. For some filters it might be neccesary to clear your cache and test in a private/incognito browser window when testing. If any errors appear, you can simply delete the file from the mu-plugins folder.
 
-We at Complianz are always happy to assist, so leave a ticket at [complianz.io](https://complianz.io/support/) if you need any help.
+We at Complianz are always happy to assist, so leave a ticket at [complianz.io](https://complianz.io/support/) if you need any help!

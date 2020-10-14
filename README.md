@@ -1,3 +1,5 @@
+![Complianz Logo](https://complianz.io/wp-content/uploads/2020/07/complianz-ofoikoaeo4t3u99dinzoecufr8lujhogjl68qdqxw8.png)
+
 # About Complianz Integrations
 
 These .php files can be used by Complianz users to extend functionalities, either within Complianz itself, other services or plugins. Some integrations built upon premium features, and others can be used by all users. An example of a integration for premium users is creating variability in GEOIP, so you can choose regions or countries by code to serve existing consent management. 

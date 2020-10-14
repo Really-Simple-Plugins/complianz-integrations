@@ -1,4 +1,4 @@
-![Complianz Logo](https://complianz.io/wp-content/uploads/2020/07/complianz-ofoikoaeo4t3u99dinzoecufr8lujhogjl68qdqxw8.png)
+![Complianz Logo](https://really-simple-plugins.com/complianz-gdpr-plugin-released/complianz-logo-concept-300x75-huh/)
 
 # About Complianz Integrations
 

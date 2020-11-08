@@ -9,7 +9,8 @@
  */
 
 function cmplz_whitelist_my_string( $class, $total_match, $found ) {
-	if ( $found && false !== strpos( $total_match, 'YOUR-SCRIPTID' ) ) {
+	$string = 'my-string'; //'string from inline script or source that should be whitelisted'
+	if ( $found && false !== strpos( $total_match, $string ) ) {
 		$class = 'cmplz-native'; // add cmplz-script for Marketing and cmplz-stats for Statistics
 	}
 	return $class;

@@ -35,8 +35,8 @@ add_filter('cmplz_cookie_warning_required_stats', 'cmplz_jetpack_stats_set_stati
  * @return array
  */
 function cmplz_jetpack_stats_stats_markers( $markers ) {
-	$tags[] = 'pixel.wp.com';
-	$tags[] = 'stats.wp.com';
+	$markers['jetpack'][] = 'pixel.wp.com';
+	$markers['jetpack'][] = "stats.wp.com";
 	return $markers;
 }
 add_filter( 'cmplz_stats_markers', 'cmplz_jetpack_stats_stats_markers', 20, 1 );

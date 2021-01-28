@@ -5,6 +5,7 @@
 * themedir/complianz-gpdr-premium/placeholder-$type.jpg
 * themedir/complianz-gpdr-premium-multisite/placeholder-$type.jpg
 */
+defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
 
 function cmplz_custom_google_maps_placeholder( $url ){
 $url = 'my-custom-placeholder.png';

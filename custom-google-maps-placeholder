@@ -1,0 +1,13 @@
+<?php
+/**
+* URL based on themdirectory and plugin
+* themedir/complianz-gpdr/placeholder-$type.jpg
+* themedir/complianz-gpdr-premium/placeholder-$type.jpg
+* themedir/complianz-gpdr-premium-multisite/placeholder-$type.jpg
+*/
+
+function cmplz_custom_google_maps_placeholder( $url ){
+$url = 'my-custom-placeholder.png';
+return $url;
+}
+add_filter( 'cmplz_placeholder_google-maps', 'cmplz_custom_google_maps_placeholder', 20, 2 );

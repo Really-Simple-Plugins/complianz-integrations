@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Wrap an placeholder element in a <div> in case the an iFrame is set without wrapping HTML attributes
  * A common example is when YouTube videos will shift your lay-out when blocked prior to consent

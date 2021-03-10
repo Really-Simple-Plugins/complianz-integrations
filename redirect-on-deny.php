@@ -13,3 +13,4 @@ function cmplz_redirect_on_deny() {
 	<?php
 }
 add_action( 'wp_footer', 'cmplz_redirect_on_deny' );
+

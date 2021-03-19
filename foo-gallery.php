@@ -1,6 +1,6 @@
 <?php
 
-function foo_gallery_block_content( $html ){
+function my_foo_gallery_block_content( $html ){
 	if ( cmplz_uses_thirdparty('youtube') ) {
 		$pattern = '/fg-type-video.*<a href="(.*?")/i';
 		if ( preg_match_all( $pattern, $html,
@@ -18,10 +18,10 @@ function foo_gallery_block_content( $html ){
 	}
 	return $html;
 }
-add_filter( 'cmplz_cookie_blocker_output' , 'foo_gallery_block_content' );
+add_filter( 'cmplz_cookie_blocker_output' , 'my_foo_gallery_block_content' );
 
 
-function cmplz_foo_gallery_css() {
+function my_cmplz_foo_gallery_css() {
 	if ( cmplz_uses_thirdparty('youtube') ) {
 		?>
 		<style>
@@ -38,4 +38,4 @@ function cmplz_foo_gallery_css() {
 		<?php
 	}
 }
-add_action( 'wp_footer', 'cmplz_foo_gallery_css' );
+add_action( 'wp_footer', 'my_cmplz_foo_gallery_css' );

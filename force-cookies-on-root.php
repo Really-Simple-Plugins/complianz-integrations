@@ -1,5 +1,5 @@
 <?php
-/* Force consent cookies on the roo as shown below, or choose a subfolder 
+/* Force consent cookies on the root as shown below, or choose a subfolder 
 * Add subfolder between '' on line 6
 */
 function my_cookie_path($path) {

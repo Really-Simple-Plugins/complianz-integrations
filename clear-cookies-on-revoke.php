@@ -1,6 +1,6 @@
 <?php
 /**
- * Clear cookies on revoke. In this implementation, cookies which include "wp" are excluded.
+ * Clear cookies on revoke.
  */
 function cmplz_clear_cookies_on_revoke() {
 	?>
@@ -15,23 +15,42 @@ function cmplz_clear_cookies_on_revoke() {
              */
             var excludeString = 'wp';
             function cmplzClearAllCookies(){
+                if (typeof document === 'undefined') {
+                    return;
+                }
+
+                var secure = ";secure";
+                var date = new Date();
+                date.setTime(date.getTime() - (24 * 60 * 60 * 1000));
+                var expires = ";expires=" + date.toGMTString();
+                if (window.location.protocol !== "https:") secure = '';
+
                 (function () {
                     var cookies = document.cookie.split("; ");
                     for (var c = 0; c < cookies.length; c++) {
                         var d = window.location.hostname.split(".");
+                        //if we have more than one result in the array, we can skip the last one, as it will be the .com/.org extension
+                        var skip_last = d.length > 1;
                         while (d.length > 0) {
                             var cookieName = cookies[c].split(";")[0].split("=")[0];
-                            var cookieBase = encodeURIComponent(cookieName) + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' + d.join('.') + ' ;path=';
-                            var p = location.pathname.split('/');
-                            if ( cookieName.indexOf(excludeString) !==-1 ) {
-                                document.cookie = cookieBase + '/';
-                                while (p.length > 0) {
-                                    document.cookie = cookieBase + p.join('/');
-                                    p.pop();
-                                };
-                            }
+                            var p = location.pathname;
+                            p = p.replace(/^\/|\/$/g, '').split('/');
+                            var cookieBase = encodeURIComponent(cookieName) + '=;SameSite=Lax' + secure + expires +';domain=.' + d.join('.') + ';path=';
+                            var cookieBaseDomain = encodeURIComponent(cookieName) + '=;SameSite=Lax' + secure + expires +';domain=;path=';
+                            document.cookie = cookieBaseDomain + '/';
+                            document.cookie = cookieBase+ '/';
+                            while (p.length > 0) {
+                                var path = p.join('/');
+                                if ( path.length>0 ) {
+                                    document.cookie = cookieBase + '/' + path;
+                                    document.cookie = cookieBaseDomain + '/' + path;
+                                }
+                                p.pop();
+                            };
 
                             d.shift();
+                            //prevents setting cookies on .com/.org
+                            if (skip_last && d.length==1) d.shift();
                         }
                     }
                 })();

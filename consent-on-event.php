@@ -5,10 +5,9 @@ function cmplz_consent_on_event_settings() {
     // If you use the GEO IP Setting (Pro feature), you can select in which country this should be enabled.
     // When the setting is disabled or you are using the free version of Complianz this will affect all regions.
     $enable_for_regions 	= array ('au');
-
     $consent_on_scroll 		= true; // true or false
     $consent_on_timeout 	= true; // true or false
-    $consent_timeout 		= 10;   // time in seconds
+    $consent_timeout 		= 15;   // time in seconds
 
     // You are done setting up the settings. You don't need to edit the code below.
 

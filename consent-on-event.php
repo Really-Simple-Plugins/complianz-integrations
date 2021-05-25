@@ -18,27 +18,48 @@ function cmplz_consent_on_event_settings() {
         $consent_on_timeout 	= false;
     }
 
-    if ($consent_on_scroll) { ?>
+    if ($consent_on_scroll || ($consent_on_timeout && $consent_timeout > 0) ) { ?>
         <script type='text/javascript'>
             jQuery(document).ready(function ($) {
+
+                /**
+                 * User has made a choice on giving consent
+                 * @returns boolean
+                 */
+                function cmplzHasConsentStatus() {
+                    if (typeof document === 'undefined') return false;
+                    return document.cookie.includes("cmplz_stats=deny") || document.cookie.includes("cmplz_stats=allow") ||
+                        document.cookie.includes("cmplz_marketing=deny") || document.cookie.includes("cmplz_marketing=allow");
+                }
+
+                <?php if ($consent_on_scroll) { ?>
+                /**
+                 * Give consent on scroll event, only if user has not made a choice yet
+                 */
                 $(window).on('scroll', cmplz_accept_on_scroll_event);
                 function cmplz_accept_on_scroll_event() {
-                    $(".cc-allow").trigger("click");
-                    $(".cc-accept-all").trigger("click");
+                    if ( ! cmplzHasConsentStatus() ) {
+                        $(".cc-allow").trigger("click");
+                        $(".cc-accept-all").trigger("click");
+                    }
                     $(window).off('scroll', cmplz_accept_on_scroll_event);
                 }
+                <?php } ?>
+
+                <?php if ($consent_on_timeout) { ?>
+                /**
+                 * Give consent on time event, only if user has not made a choice yet
+                 */
+                setTimeout(function () {
+                    if ( ! cmplzHasConsentStatus() ) {
+                        $(".cc-allow").trigger("click");
+                        $(".cc-accept-all").trigger("click");
+                    }
+                }, <?php echo($consent_timeout * 1000) ?> );
+                <?php } ?>
+
             });
         </script>
     <?php }
 
-    if ($consent_on_timeout) { ?>
-        <script type='text/javascript'>
-            jQuery(document).ready(function ($) {
-                setTimeout(function () {
-                    $(".cc-allow").trigger("click");
-                    $(".cc-accept-all").trigger("click");
-                }, <?php echo($consent_timeout * 1000) ?> );
-            });
-        </script>
-    <?php }
 }

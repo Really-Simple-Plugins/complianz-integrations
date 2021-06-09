@@ -16,7 +16,6 @@ defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
  */
 function cmplz_custom_googlemaps_script( $tags ) {
 	$tags[] = 'maps.googleapis.com/maps/api/js';
-	$tags[] = 'initMap';
 	$tags[] = 'mapOptions';
 
 	return $tags;

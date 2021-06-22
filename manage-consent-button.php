@@ -4,8 +4,9 @@
 defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
 
 /**
- * Make sure you use the Font-Awesome 5 Library. A free plugin with the same name is available for download.
- * Do NOT hide the current Manage Consent Tab under settings.
+ * 1. Make sure you use the Font-Awesome 5 Library. A free plugin with the same name is available for download.
+ * 2. Do NOT hide the current Manage Consent Tab under settings.
+ * 3. Change CSS if so desired!
  */
 
 function myCustomManageConsent() {

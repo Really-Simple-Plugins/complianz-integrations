@@ -31,6 +31,7 @@ function myCustomManageConsent() {
 	#manageconsent:hover {
 	background-color:#333;
 	color:#fff;
+	}
 	.cc-revoke {display:none;}
 	</style>
 	<script>

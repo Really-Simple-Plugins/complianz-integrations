@@ -19,7 +19,7 @@ function cmplz_leafletmaps_directory_script( $tags ) {
 
 function cmplz_leafletmaps_directory_detected_services( $services ) {
 	if ( ! in_array( 'openstreetmaps', $services ) ) {
-		$services[] = 'openstreepmaps';
+		$services[] = 'openstreetmaps';
 	}
 
 	return $services;

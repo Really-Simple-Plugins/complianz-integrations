@@ -37,7 +37,7 @@ function cmplz_directory_pro_scripts() {
 	?>
     <script>
         jQuery(document).ready(function ($) {
-            $(document).on("cmplzRunAfterAllScripts", cmplz_directorypro_fire_domContentLoadedEvent);
+            $(document).on("cmplz_run_after_all_scripts", cmplz_directorypro_fire_domContentLoadedEvent);
             function cmplz_directorypro_fire_domContentLoadedEvent() {
                 setTimeout(function(){
                     var evt = document.createEvent('Event');

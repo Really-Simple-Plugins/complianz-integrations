@@ -28,7 +28,7 @@ function cmplz_fb_pagelike_widget_js() {
 	?>
 	<script>
 		jQuery(document).ready(function ($) {
-			$(document).on("cmplzRunAfterAllScripts", cmplz_fb_pagelike_widget_js);
+			$(document).on("cmplz_run_after_all_scripts", cmplz_fb_pagelike_widget_js);
 			function cmplz_fb_pagelike_widget_js() {
 				$(document).trigger("ready");
 			}

@@ -23,32 +23,17 @@ function cmplz_custom_googlemaps_script( $tags ) {
 }
 add_filter( 'cmplz_known_script_tags', 'cmplz_custom_googlemaps_script' );
 
-/**
- * Conditionally add the dependency
- * $deps['wait-for-this-script'] = 'script-that-should-wait';
- */
-
-// function cmplz_custom_maps_dependencies( $tags ) {
-// 	$tags['maps.googleapis.com'] = 'showHeaderMap';
-// 	$tags['maps.googleapis.com'] = 'mapContainer';
-//
-//
-// 	return $tags;
-// }
-// add_filter( 'cmplz_dependencies', 'cmplz_custom_maps_dependencies' );
-
 function cmplz_maps_initDomContentLoaded() {
 			?>
 			<script>
 				jQuery(document).ready(function ($) {
-					$(document).on("cmplzRunAfterAllScripts", cmplz_maps_fire_domContentLoadedEvent);
+					$(document).on("cmplz_run_after_all_scripts", cmplz_maps_fire_domContentLoadedEvent);
 					function cmplz_maps_fire_domContentLoadedEvent() {
-						console.log('trigger load event');
 						dispatchEvent(new Event('load'));
 					}
 				})
 			</script>
-			<style>.cmplz-placeholder-2 {height: 300px;}</style>
+			<style>.cmplz-placeholder-2, .cmplz-placeholder-1 {height: 300px;}</style>
 			<?php
 
 }

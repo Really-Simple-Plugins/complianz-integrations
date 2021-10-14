@@ -6,8 +6,8 @@ function cmplz_open_in_new_window() {
     ?>
     <script>
         jQuery(document).ready(function ($) {
-            document.addEventListener('cmplzCookieWarningLoaded', function (e) {
-                $('a.cc-link').attr('target', '_blank');
+            document.addEventListener('cmplz_cookie_warning_loaded', function (e) {
+                $('a.cmplz-link.cookie-statement').attr('target', '_blank');
             });
         });
     </script>

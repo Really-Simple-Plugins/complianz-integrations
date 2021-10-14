@@ -2,7 +2,9 @@
 defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
 
 /**
- * @param $cookiewarning_required
+ * Force a cookie banner, even when it's not required, as detected by Complianz
+ *
+ * @param bool $cookiewarning_required
  *
  * @return bool
  */

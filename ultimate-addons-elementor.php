@@ -2,23 +2,18 @@
 defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
 
 function cmplz_uafe_initDomContentLoaded() {
-//	if ( cmplz_uses_thirdparty('youtube') ) {
+	if ( cmplz_uses_thirdparty('youtube') ) {
 		?>
 		<script>
 			jQuery(document).ready(function ($) {
-				$(document).on("cmplzRunAfterAllScripts", cmplz_uafe_fire_initOnReadyComponents);
+				$(document).on("cmplz_run_after_all_scripts", cmplz_uafe_fire_initOnReadyComponents);
 				function cmplz_uafe_fire_initOnReadyComponents() {
-					console.log("init elementor frontend");
-				// 	setTimeout(
-			  // function()
-			  // {
 					window.elementorFrontend.init();
-			  // }, 2000);
 				}
 			})
 		</script>
 	<?php
-//	}
+	}
 }
 add_action( 'wp_footer', 'cmplz_uafe_initDomContentLoaded' );
 

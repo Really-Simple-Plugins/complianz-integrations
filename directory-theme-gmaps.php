@@ -14,10 +14,19 @@ defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
  * @return array
  */
 function cmplz_custom_googlemaps_script( $tags ) {
-	$tags[] = 'maps.googleapis.com/maps/api/js';
-	$tags[] = 'google.maps';
-	$tags[] = 'showHeaderMap';
-	$tags[] = 'mapContainer';
+	$tags[] = array(
+		'name' => 'google-maps',
+		'category' => 'marketing',
+		'placeholder' => 'google-maps',
+		'urls' => array(
+			'showHeaderMap',
+			'mapContainer',
+			'google.maps',
+			'maps.googleapis.com/maps/api/js',
+		),
+		'enable_placeholder' => '1',
+		'placeholder_class' => 'google-map-container,map-container',
+	);
 
 	return $tags;
 }
@@ -38,17 +47,3 @@ function cmplz_maps_initDomContentLoaded() {
 
 }
 add_action( 'wp_footer', 'cmplz_maps_initDomContentLoaded' );
-
-/**
- * Add a placeholder to a div with class "my-maps-class"
- * @param $tags
- *
- * @return mixed
- */
-function cmplz_custom_maps_placeholder( $tags ) {
-	$tags['google-maps'][] = "google-map-container";
-	$tags['google-maps'][] = "map-container";
-
-	return $tags;
-}
-add_filter( 'cmplz_placeholder_markers', 'cmplz_custom_maps_placeholder' );

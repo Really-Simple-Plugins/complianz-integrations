@@ -25,24 +25,20 @@ add_filter( 'cmplz_dependencies', 'cmplz_my_multimarker_dependencies' );
  * @return array
  */
 function cmplz_my_multimarker_script( $tags ) {
-	$tags[] = 'maps.googleapis.com/maps/api/js';
-	$tags[] = 'map-multi-marker/asset/js/';
-
+	$tags[] = array(
+		'name' => 'google-maps',
+		'category' => 'marketing',
+		'placeholder' => 'google-maps',
+		'urls' => array(
+			'maps.googleapis.com/maps/api/js',
+			'map-multi-marker/asset/js/',
+		),
+		'enable_placeholder' => '1',
+		'placeholder_class' => 'map-multi-marker',
+	);
 	return $tags;
 }
 add_filter( 'cmplz_known_script_tags', 'cmplz_my_multimarker_script' );
-
-/**
- * Add a placeholder to a div with class "my-maps-class"
- * @param $tags
- *
- * @return mixed
- */
-function cmplz_my_multimarker_placeholder( $tags ) {
-	$tags['google-maps'][] = "map-multi-marker";
-	return $tags;
-}
-add_filter( 'cmplz_placeholder_markers', 'cmplz_my_multimarker_placeholder' );
 
 /**
  * Add services to the list of detected items, so it will get set as default, and will be added to the notice about it

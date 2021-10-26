@@ -3,9 +3,21 @@ defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
 
 add_filter( 'cmplz_known_script_tags', 'cmplz_leafletmaps_directory_script' );
 function cmplz_leafletmaps_directory_script( $tags ) {
-
-	$tags[] = 'WPLeafletMapPlugin';
-
+	$tags[] = array(
+		'name' => 'openstreetmaps',
+		'category' => 'marketing',
+		'placeholder' => 'openstreetmaps',
+		'urls' => array(
+			'WPLeafletMapPlugin',
+		),
+		'enable_placeholder' => '1',
+		'placeholder_class' => 'leaflet-map',
+		'enable_dependency' => '1',
+		'dependency' => [
+			//'wait-for-this-script' => 'script-that-should-wait'
+			'leaflet.js' => 'leaflet-gesture-handling-leafext.min.js',
+		],
+	);
 	return $tags;
 }
 
@@ -26,31 +38,3 @@ function cmplz_leafletmaps_directory_detected_services( $services ) {
 }
 
 add_filter( 'cmplz_detected_services', 'cmplz_leafletmaps_directory_detected_services' );
-
-/**
- * Add placeholder for google maps
- *
- * @param $tags
- *
- * @return mixed
- */
-
-function cmplz_leafletmaps_directory_placeholder( $tags ) {
-	$tags['openstreetmaps'][] = 'leaflet-map';
-
-	return $tags;
-}
-
-add_filter( 'cmplz_placeholder_markers', 'cmplz_leafletmaps_directory_placeholder' );
-
-/**
- * Conditionally add the dependency
- * $deps['wait-for-this-script'] = 'script-that-should-wait';
- */
-
- function cmplz_leafletmaps_directory_plugin_dependencies( $tags ) {
-	 // $tags['window.WPLeafletMapPlugin.map'] = 'construct-leaflet-map.js';
-	 $tags['leaflet.js'] = 'leaflet-gesture-handling-leafext.min.js';
-
-	 return $tags;
- }

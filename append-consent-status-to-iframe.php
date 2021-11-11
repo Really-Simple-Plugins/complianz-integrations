@@ -7,19 +7,17 @@ function cmplz_append_status_to_iframe() {
 	ob_start();
 	?>
 	<script>
-        jQuery(document).ready(function ($) {
-            document.addEventListener('cmplz_enable_category', function (consentData) {
-                var category = consentData.detail.category;
-                if (category==='marketing'){
-                    $('iframe').each(function (i, obj) {
-                        if ( $(this).hasClass('cmplz-iframe') ) return;
+        document.addEventListener('cmplz_enable_category', function (consentData) {
+            var category = consentData.detail.category;
+            if (category==='marketing'){
+                document.querySelectorAll('iframe').forEach(obj => {
+                    if ( obj.classList.contains('cmplz-iframe') ) return;
 
-                        var src = $(this).data('src-cmplz');
-                        src = src+'&cookie=marketing';
-                        $(this).attr('src', src);
-                    }
+                    var src = obj.getAttribute('data-src-cmplz');
+                    src = src+'&cookie=marketing';
+                    obj.setAttribute('src', src);
                 }
-            });
+            }
         });
 	</script>
 	<?php

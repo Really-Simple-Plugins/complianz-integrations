@@ -6,7 +6,6 @@
 function cmplz_clear_cookies_on_revoke() {
 	?>
 	<script>
-        jQuery(document).ready(function ($) {
             document.addEventListener('cmplz_revoke', function (e) {
                 cmplzClearAllCookies();
             });
@@ -56,9 +55,7 @@ function cmplz_clear_cookies_on_revoke() {
                     }
                 })();
             }
-
-        });
-	</script>
+    </script>
 	<?php
 }
 add_action( 'wp_footer', 'cmplz_clear_cookies_on_revoke' );

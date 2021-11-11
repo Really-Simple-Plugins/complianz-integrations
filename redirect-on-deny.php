@@ -7,14 +7,12 @@
 function cmplz_redirect_on_deny() {
 	?>
 	<script>
-        jQuery(document).ready(function ($) {
             document.addEventListener('cmplz_status_change', function (e) {
                 if (e.detail.category === 'marketing' && e.detail.value==='deny') {
                     window.location.href = "https://wordpress.org/plugins/complianz-gdpr/";
                 }
                 e.preventDefault();
             });
-        });
 	</script>
 	<?php
 }

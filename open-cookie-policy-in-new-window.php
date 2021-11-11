@@ -5,9 +5,9 @@
 function cmplz_open_in_new_window() {
     ?>
     <script>
-        jQuery(document).ready(function ($) {
-            document.addEventListener('cmplz_cookie_warning_loaded', function (e) {
-                $('a.cmplz-link.cookie-statement').attr('target', '_blank');
+        document.addEventListener('cmplz_cookie_warning_loaded', function (e) {
+            document.querySelectorAll('a.cmplz-link.cookie-statement').forEach(obj => {
+                obj.setAttribute('target', '_blank');
             });
         });
     </script>

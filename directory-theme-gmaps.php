@@ -35,12 +35,10 @@ add_filter( 'cmplz_known_script_tags', 'cmplz_custom_googlemaps_script' );
 function cmplz_maps_initDomContentLoaded() {
 			?>
 			<script>
-				jQuery(document).ready(function ($) {
-					$(document).on("cmplz_run_after_all_scripts", cmplz_maps_fire_domContentLoadedEvent);
+					document.addEventListener("cmplz_run_after_all_scripts", cmplz_maps_fire_domContentLoadedEvent);
 					function cmplz_maps_fire_domContentLoadedEvent() {
 						dispatchEvent(new Event('load'));
 					}
-				})
 			</script>
 			<style>.cmplz-placeholder-2, .cmplz-placeholder-1 {height: 300px;}</style>
 			<?php

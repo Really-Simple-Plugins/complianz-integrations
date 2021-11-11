@@ -6,13 +6,21 @@
 function cmplz_show_banner_on_blocked_content_click() {
 	?>
 	<script>
-        jQuery(document).ready(function ($) {
-            document.addEventListener('cmplz_cookie_warning_loaded', function (e) {
-                $('.cmplz-accept-marketing').each(function(){
-                    $(this).removeClass( 'cmplz-accept-marketing' ).addClass( 'cmplz-show-banner' );
-                });
-                $(document).on('click', '.cmplz-show-banner', function(){
-                    $('.cmplz-manage-consent').click();
+        function addEvent(event, selector, callback, context) {
+            document.addEventListener(event, e => {
+                if ( e.target.closest(selector) ) {
+                    callback(e);
+                }
+            });
+        }
+        document.addEventListener('cmplz_cookie_warning_loaded', function (e) {
+            document.querySelectorAll('.cmplz-accept-marketing').forEach(obj => {
+                obj.classList.remove( 'cmplz-accept-marketing' );
+                obj.classList.add( 'cmplz-show-banner' );
+            });
+            addEvent.on('click', '.cmplz-show-banner', function(e){
+                document.querySelectorAll('.cmplz-manage-consent').forEach(obj => {
+                    obj.click();
                 });
             });
         });

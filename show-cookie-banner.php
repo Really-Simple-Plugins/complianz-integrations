@@ -5,9 +5,16 @@
 function cmplz_show_banner_on_click() {
 	?>
 	<script>
-        jQuery(document).ready(function ($) {
-            $(document).on('click', '.cmplz-show-banner', function(){
-                $('.cmplz-manage-consent').click();
+        function addEvent(event, selector, callback, context) {
+            document.addEventListener(event, e => {
+                if ( e.target.closest(selector) ) {
+                    callback(e);
+                }
+            });
+        }
+        addEvent.on('click', '.cmplz-show-banner', function(){
+            document.querySelectorAll('.cmplz-manage-consent').forEach(obj => {
+                obj.click();
             });
         });
 	</script>

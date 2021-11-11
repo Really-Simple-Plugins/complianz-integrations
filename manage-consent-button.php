@@ -36,9 +36,9 @@ function myCustomManageConsent() {
 	    .cmplz-manage-consent {display:none;}
 	</style>
 	<script>
-        jQuery(document).ready(function ($) {
-            $(document).on('click', '.cmplz-show-banner', function(){
-                $('.cmplz-manage-consent').click();
+        document.addEventListener('click', '.cmplz-show-banner', function(){
+            document.querySelectorAll('.cmplz-manage-consent').forEach(obj => {
+                obj.click();
             });
         });
 	</script>

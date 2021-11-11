@@ -5,12 +5,10 @@ function cmplz_uafe_initDomContentLoaded() {
 	if ( cmplz_uses_thirdparty('youtube') ) {
 		?>
 		<script>
-			jQuery(document).ready(function ($) {
-				$(document).on("cmplz_run_after_all_scripts", cmplz_uafe_fire_initOnReadyComponents);
-				function cmplz_uafe_fire_initOnReadyComponents() {
-					window.elementorFrontend.init();
-				}
-			})
+            document.addEventListener("cmplz_run_after_all_scripts", cmplz_uafe_fire_initOnReadyComponents);
+            function cmplz_uafe_fire_initOnReadyComponents() {
+                window.elementorFrontend.init();
+            }
 		</script>
 	<?php
 	}

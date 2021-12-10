@@ -9,8 +9,8 @@ defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
  *
  * @return bool
  */
-function cmplz_my_filter_site_needs_cookiewarning( $cookiewarning_required
-) {
+
+function cmplz_my_filter_site_needs_cookiewarning( $cookiewarning_required) {
 	$url = is_ssl() ? "https" : "http";
 	$url .= "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 

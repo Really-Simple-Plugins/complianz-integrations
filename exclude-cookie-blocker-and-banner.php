@@ -10,7 +10,8 @@ defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
  */
  function cmplz_my_filter_site_needs_cookiewarning( $cookiewarning_required
  ) {
- 	$url = is_ssl() ? "https" : "http" . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+ 	$url = is_ssl() ? "https" : "http";
+	$url .= "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
  	//don't show cookie banner on page where the URL contains the parameter "cmplz_safe_mode"
  	if ( strpos($url, 'cmplz_safe_mode') !== FALSE ) {

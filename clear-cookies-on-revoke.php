@@ -1,17 +1,17 @@
 <?php
 /**
  * Clear cookies on revoke.
+ * v > 6.0
  */
 function cmplz_clear_cookies_on_revoke() {
 	?>
 	<script>
-        jQuery(document).ready(function ($) {
-            document.addEventListener('cmplzRevoke', function (e) {
+            document.addEventListener('cmplz_revoke', function (e) {
                 cmplzClearAllCookies();
             });
 
             /**
-             * Clear all cookies
+             * Clear all cookies, except those with 'wp' in them.
              */
             var excludeString = 'wp';
             function cmplzClearAllCookies(){
@@ -55,9 +55,7 @@ function cmplz_clear_cookies_on_revoke() {
                     }
                 })();
             }
-
-        });
-	</script>
+    </script>
 	<?php
 }
 add_action( 'wp_footer', 'cmplz_clear_cookies_on_revoke' );

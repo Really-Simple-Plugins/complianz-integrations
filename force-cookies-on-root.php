@@ -1,6 +1,9 @@
 <?php
-/* Force consent cookies on the root as shown below, or choose a subfolder 
-* Add subfolder between '' on line 6 e.g. /subfolder/
+/**
+ * Force consent cookies on the root as shown below, or choose a subfolder
+ * Add subfolder between '' on line 6 e.g. /subfolder/
+ * @param string @path
+ * @return string
 */
 function my_cookie_path($path) {
     return '';

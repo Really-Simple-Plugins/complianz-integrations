@@ -1,16 +1,5 @@
 <?php
 /**
- * add the dependency
- * $deps['wait-for-this-script'] = 'script-that-should-wait';
- */
-
-function cmplz_extendedmapsforelementor_dependencies( $tags ) {
-	$tags['maps.googleapis.com/maps/api/js'] = 'eb-google-map.js';
-	return $tags;
-}
-add_filter( 'cmplz_dependencies', 'cmplz_extendedmapsforelementor_dependencies' );
-
-/**
  * Block the scripts.
  * initMap can also be something else. That's the problem with custom maps :)
  *
@@ -19,24 +8,26 @@ add_filter( 'cmplz_dependencies', 'cmplz_extendedmapsforelementor_dependencies' 
  * @return array
  */
 function cmplz_extendedmapsforelementor_script( $tags ) {
-	$tags[] = 'maps.googleapis.com/maps/api/js';
-	$tags[] = 'eb-google-map.js';
+	$tags[] = array(
+		'name' => 'google-maps',
+		'category' => 'marketing',
+		'placeholder' => 'google-maps',
+		'urls' => array(
+			'maps.googleapis.com/maps/api/js',
+			'eb-google-map.js',
+		),
+		'enable_placeholder' => '1',
+		'placeholder_class' => 'eb-map',
+		'enable_dependency' => '1',
+		'dependency' => [
+			//'wait-for-this-script' => 'script-that-should-wait'
+			'maps.googleapis.com/maps/api/js' => 'eb-google-map.js',
+		],
+	);
 
 	return $tags;
 }
 add_filter( 'cmplz_known_script_tags', 'cmplz_extendedmapsforelementor_script' );
-
-/**
- * Add a placeholder to a div with class "my-maps-class"
- * @param $tags
- *
- * @return mixed
- */
-function cmplz_extendedmapsforelementor_placeholder( $tags ) {
-	$tags['google-maps'][] = "eb-map";
-	return $tags;
-}
-add_filter( 'cmplz_placeholder_markers', 'cmplz_extendedmapsforelementor_placeholder' );
 
 /**
  * Add services to the list of detected items, so it will get set as default, and will be added to the notice about it

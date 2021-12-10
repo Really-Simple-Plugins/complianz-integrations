@@ -26,6 +26,6 @@ function cmplz_append_tc_string_to_link() {
 	<?php
 	$script = ob_get_clean();
 	$script = str_replace(array('<script>', '</script>'), '', $script);
-	wp_add_inline_script( 'cmplz-cookie-config', $script);
+	wp_add_inline_script( 'cmplz-cookiebanner', $script);
 }
 add_action( 'wp_enqueue_scripts', 'cmplz_append_tc_string_to_link', PHP_INT_MAX );

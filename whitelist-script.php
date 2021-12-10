@@ -8,12 +8,14 @@
  * @return string
  */
 
-function cmplz_whitelist_my_string( $class, $total_match, $found ) {
-	$string = 'my-string'; //'string from inline script or source that should be whitelisted'
-	if ( $found && false !== strpos( $total_match, $string ) ) {
-		$class = 'cmplz-native'; // add cmplz-script for Marketing and cmplz-stats for Statistics
-	}
-	return $class;
+/**
+ * @param array $whitelisted_script_tags
+ *
+ * @return array
+ */
+function cmplz_add_custom_whitelisted_script_tags( $whitelisted_script_tags ) {
+	$whitelisted_script_tags[] = 'my-string'; //'string from inline script or source that should be whitelisted'
+	return $whitelisted_script_tags;
 }
-add_filter ( 'cmplz_script_class', 'cmplz_whitelist_my_string', 10 , 3 );
+add_filter( 'cmplz_whitelisted_script_tags', 'cmplz_add_custom_whitelisted_script_tags', 10, 1 );
 

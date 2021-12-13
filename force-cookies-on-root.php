@@ -1,7 +1,7 @@
 <?php
 /**
  * Force consent cookies on the root as shown below, or choose a subfolder
- * Add subfolder between '' on line 6 e.g. /subfolder/
+ * Add subfolder between '' on line 9 e.g. /subfolder/
  * @param string @path
  * @return string
 */

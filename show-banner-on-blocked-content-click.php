@@ -18,7 +18,7 @@ function cmplz_show_banner_on_blocked_content_click() {
                 obj.classList.remove( 'cmplz-accept-marketing' );
                 obj.classList.add( 'cmplz-show-banner' );
             });
-            addEvent.on('click', '.cmplz-show-banner', function(e){
+            addEvent('click', '.cmplz-show-banner', function(e){
                 document.querySelectorAll('.cmplz-manage-consent').forEach(obj => {
                     obj.click();
                 });

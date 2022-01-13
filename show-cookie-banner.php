@@ -12,7 +12,7 @@ function cmplz_show_banner_on_click() {
                 }
             });
         }
-        addEvent.on('click', '.cmplz-show-banner', function(){
+        addEvent('click', '.cmplz-show-banner', function(){
             document.querySelectorAll('.cmplz-manage-consent').forEach(obj => {
                 obj.click();
             });

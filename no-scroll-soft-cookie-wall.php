@@ -7,7 +7,6 @@
 function cmplz_noscroll_js() {
     ob_start(); ?>
     <script>
-        let cmplz_cookie_name = 'denied_time';
 
         document.addEventListener("cmplz_banner_status", function(consentData) {
             var status = consentData.detail;

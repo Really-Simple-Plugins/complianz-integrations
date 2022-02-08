@@ -43,10 +43,28 @@ function cmplz_facetwp_map_initDomContentLoaded() {
 	ob_start();
 	?>
 	<script>
+        /**
+         * Make functions await for 'ms' milliseconds
+         * https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+         *
+         */
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
+        /**
+         * Wait for 'map-html-id' to be initialized
+         *
+         */
+        const checkIfMapIsInitialized = () => {
+            const map = document.getElementById('map-html-id');
+            return map.children.length > 0 && FWP_MAP.markersArray.length > 0;
+        }
+
+        /**
+         * Wait for 'FWP', 'FWP_MAP' and 'FWP_MAP.map' to be set
+         *
+         */
         const checkIfFWPExists = async () => {
             if (typeof FWP !== 'undefined' && typeof FWP_MAP !== 'undefined' && typeof FWP_MAP.map !== 'undefined') {
                 return true;
@@ -55,15 +73,37 @@ function cmplz_facetwp_map_initDomContentLoaded() {
             checkIfFWPExists();
         }
 
-        const fixMap = async (event) => {
-            if (event.detail.category === "marketing") {
-                await checkIfFWPExists();
-                FWP.loaded = false;
-                FWP.refresh();
-                document.removeEventListener('cmplz_enable_category', fixMap);
+        /**
+         * Reinitialize FacetWP Google Maps' map
+         *
+         */
+        const reinitiliazeMap = async () => {
+            FWP.loaded = false;
+            delete FWP.frozen_facets.map_facet;
+            FWP.refresh();
+            await sleep(6000);
+            if (checkIfMapIsInitialized() !== true) {
+                reinitiliazeMap();
             }
         }
+
+        const fixMap = async (event) => {
+            if (!cmplz_has_consent("marketing")) {
+                return;
+            }
+            if (event.type === "cmplz_enable_category") {
+                document.removeEventListener('cmplz_enable_category', fixMap);
+                window.removeEventListener('load', fixMap);
+            }
+            await checkIfFWPExists();
+
+            if (checkIfMapIsInitialized() !== true) {
+                await reinitiliazeMap();
+            }
+        }
+
         document.addEventListener('cmplz_enable_category', fixMap);
+        window.addEventListener('load', fixMap);
 	</script>
 	<?php
 	$script = ob_get_clean();

@@ -40,8 +40,13 @@ function cmplz_social_media_script() {
             if ( e.target.closest('.cmplz-save-preferences') ) {
                 let social_media_enabled = document.querySelector('input.cmplz-socialmedia').checked;
                 if (social_media_enabled) {
-                    let services = ['facebook', 'youtube'];
+
+		    // remove or add services below if needed
                     //if any service is enabled, allow the general services also, because some services are partially 'general'
+
+                    let services = ['facebook', 'instagram', 'whatsapp', 'tiktok', 'pinterest', 'linkedin', 'twitter', 'disqus'];
+
+
                     cmplz_enable_category('', 'general');
                     for (let key in services) {
                         if (services.hasOwnProperty(key)) {

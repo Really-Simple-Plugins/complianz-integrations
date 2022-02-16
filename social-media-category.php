@@ -9,7 +9,11 @@ function cmplz_add_social_media_category($html){
 				<div class="cmplz-category-title"><?php _e("Social media", "complianz-gdpr")?></div>
 				<div class="cmplz-banner-checkbox">
 					<input type="checkbox" id="cmplz-socialmedia-optin" data-category="cmplz_socialmedia" class="cmplz-consent-checkbox cmplz-socialmedia" size="40" value="1">
-					<label class="cmplz-label" for="cmplz-socialmedia-optin" tabindex="0"><span><?php _e("Social media", "complianz-gdpr")?></span></label>
+					<label class="cmplz-label" for="cmplz-socialmedia-optin" tabindex="0"><span>
+						
+					// Social Media descriptive text
+					<?php _e("Social media", "complianz-gdpr")?></span></label>
+					
 				</div>
 				<div class="cmplz-icon cmplz-open"></div>
 			</div>

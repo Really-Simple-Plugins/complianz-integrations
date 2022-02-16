@@ -12,7 +12,7 @@ function cmplz_add_social_media_category($html){
 					<label class="cmplz-label" for="cmplz-socialmedia-optin" tabindex="0"><span>
 						
 					// Social Media descriptive text
-					<?php _e("Social media", "complianz-gdpr")?></span></label>
+					<?php _e("Lorem ipsum", "complianz-gdpr")?></span></label>
 					
 				</div>
 				<div class="cmplz-icon cmplz-open"></div>

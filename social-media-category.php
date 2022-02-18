@@ -20,8 +20,9 @@ function cmplz_add_social_media_category($html){
 		<div class="cmplz-description">
 			<span class="cmplz-description-socialmedia">
 
-				// Social Media descriptive text
-				<?php _e("The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.", "complianz-gdpr")?></span>
+			// Social Media descriptive text
+			<?php _e("The technical storage or access is required to create user profiles to send advertising, 
+			or to track the user on a website or across several websites for similar marketing purposes.", "complianz-gdpr")?></span>
 		</div>
 	</details>
 

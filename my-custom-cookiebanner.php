@@ -3,7 +3,7 @@
  * Example functions to customize the banner css, either with full override, or by adding css
  * Not all functions are required, so carefully check which ones you need
  *
- * see also the file "cookiebanner.php" for the template that is included in below example 
+ * see also the file "cookiebanner.php" for the template that is included in below example
  */
 
 /**

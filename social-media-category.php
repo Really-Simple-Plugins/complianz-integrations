@@ -79,6 +79,21 @@ function cmplz_social_media_script() {
             }
         });
 
+        document.addEventListener("cmplz_fire_categories", function (e) {
+            var consentedCategories = e.detail.categories;
+            if ( cmplz_in_array( 'socialmedia', consentedCategories ) ) {
+                if (cmplz_fired_events.indexOf('socialmedia') === -1) {
+                    cmplz_fired_events.push('socialmedia');
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': complianz.prefix+'event_socialmedia'
+                    });
+                    let event = new CustomEvent('cmplz_tag_manager_event', { detail: 'socialmedia' });
+                    document.dispatchEvent(event);
+                }
+            }
+        });
+
         document.addEventListener("cmplz_revoke", function(e) {
             cmplz_set_cookie('socialmedia', 'deny');
         });

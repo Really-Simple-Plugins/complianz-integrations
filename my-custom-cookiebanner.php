@@ -44,7 +44,7 @@ add_action( 'cmplz_banner_css', 'add_my_custom_banner_css' );
  *
  * @return string
  */
-function cmplz_add_social_media_category($html){
+function cmplz_custom_banner_html($html){
     return file_get_contents(trailingslashit(WPMU_PLUGIN_DIR).'cookiebanner.php');
 }
-add_filter('cmplz_banner_html', 'cmplz_add_social_media_category');
+add_filter('cmplz_banner_html', 'cmplz_custom_banner_html');

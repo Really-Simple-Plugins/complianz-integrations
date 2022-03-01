@@ -11,6 +11,13 @@ function cmplz_reload_after_consent() {
                 location.reload();
             }
         });
+
+        document.addEventListener('cmplz_status_change_service', function (e) {
+            if ( e.detail.value ) {
+                location.reload();
+            }
+        });
+
     </script>
     <?php
 }

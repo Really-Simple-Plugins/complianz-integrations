@@ -7,7 +7,7 @@ function cmplz_cf7_load_contactform7_on_specific_page(){
 	global $post;
 	if ( $post ) {
 		$content = $post->post_content;
-		if ( has_shortcode( $content, 'contact-form-7' ) ) {
+		if ( !has_shortcode( $content, 'contact-form-7' ) ) {
 			wp_dequeue_script( 'contact-form-7' ); // Dequeue JS Script file.
 			wp_dequeue_style( 'contact-form-7' );  // Dequeue CSS file.
 		}

@@ -1,18 +1,7 @@
 <?php
-/**
- * There are a lot of custom implementations for Google Maps. These require a custom block script
- */
 defined( 'ABSPATH' ) or die( "you do not have access to this page!" );
 
-/**
- * Block the script, and an inline script with string 'initMap'.
- * initMap can also be something else. That's the problem with custom maps :)
- * Add a placeholder to a div with class "my-maps-class"
- * @param $tags
- *
- * @return array
- */
-function cmplz_custom_googlemaps_script( $tags ) {
+function cmplz_woodmart_custom_googlemaps_script( $tags ) {
 	$tags[] = array(
 		'name' => 'google-maps',
 		'category' => 'marketing',
@@ -33,11 +22,4 @@ function cmplz_custom_googlemaps_script( $tags ) {
 	);
 	return $tags;
 }
-add_filter( 'cmplz_known_script_tags', 'cmplz_custom_googlemaps_script' );
-
-
-
-
-
-
-
+add_filter( 'cmplz_known_script_tags', 'cmplz_woodmart_custom_googlemaps_script' );

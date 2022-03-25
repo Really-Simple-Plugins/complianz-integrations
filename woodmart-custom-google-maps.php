@@ -17,7 +17,7 @@ function cmplz_woodmart_custom_googlemaps_script( $tags ) {
 		'dependency' => [
 			//'wait-for-this-script' => 'script-that-should-wait'
 			'maps.google.com' => 'maplace.min.js',
-			'maps.google.com' => 'googleMap.min.js',
+			'maplace.min.js' => 'googleMap.min.js',
 		],
 	);
 	return $tags;

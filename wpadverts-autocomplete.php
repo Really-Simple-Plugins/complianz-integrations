@@ -40,7 +40,6 @@ add_action( 'wp_footer', 'cmplz_wpadverts_reload_after_consent' );
 function cmplz_custom_wpadverts_googlemaps_script( $tags ) {
 	if( is_singular( "advert" ) ) {
 		// if the map is on the ad details page, use map-single
-        add_action( 'wp_footer', 'cmplz_wpadverts_reload_after_consent' );
 		$tags[] = array(
 			'name' => 'google-maps',
 			'category' => 'marketing',

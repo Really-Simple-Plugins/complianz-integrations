@@ -1,16 +1,21 @@
 <?php
 /**
- * If used icw CF7, load CF7 only on CF7 pages
+ * If used icw CF7, do not load CF7 on the page with paid membership pro recaptcha:
+ * my-page-without-cf7
  * @return void
  */
-function cmplz_cf7_load_contactform7_on_specific_page(){
-	global $post;
-	if ( $post ) {
-		$content = $post->post_content;
-		if ( !has_shortcode( $content, 'contact-form-7' ) ) {
-			wp_dequeue_script( 'contact-form-7' ); // Dequeue JS Script file.
-			wp_dequeue_style( 'contact-form-7' );  // Dequeue CSS file.
+$request_uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+$is_admin = strpos( $request_uri, '/wp-admin/' );
+if( false === $is_admin ){
+	add_filter( 'option_active_plugins', function( $plugins ){
+		global $request_uri;
+		$is_contact_page = strpos( $request_uri, '/my-page-without-cf7/' );
+		$myplugin = "contact-form-7/wp-contact-form-7.php";
+		$k = array_search( $myplugin, $plugins );
+		if( false !== $k && false === $is_contact_page ){
+			unset( $plugins[$k] );
 		}
-	}
+
+		return $plugins;
+	} );
 }
-add_action( 'wp_enqueue_scripts', 'cmplz_cf7_load_contactform7_on_specific_page' );

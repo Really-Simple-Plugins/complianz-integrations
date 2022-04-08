@@ -17,13 +17,30 @@ function my_custom_banner_css($css){
 	ob_start();
 	//add css below
 	?>
-	.cmplz-cookiebanner {
+    .cmplz-cookiebanner {
 
-	}
+    }
 	<?php
 	return ob_get_clean();
 }
 add_filter('cmplz_cookiebanner_css', 'my_custom_banner_css');
+
+/**
+ * IMPORTANT! This function should not be used live. It is added so the css will be regenerated on each page load, so you don't have to save the banner settings to get the new css file.
+ *
+ * @return void
+ */
+function regenerate_banner(){
+	$banners = cmplz_get_cookiebanners();
+	if ( $banners ) {
+		foreach ( $banners as $banner_item ) {
+			$banner = new CMPLZ_COOKIEBANNER( $banner_item->ID );
+			$banner->save();
+		}
+	}
+}
+add_action('init', 'regenerate_banner');
+
 
 /**
  * Add custom css to banner css file
@@ -31,9 +48,9 @@ add_filter('cmplz_cookiebanner_css', 'my_custom_banner_css');
  */
 function add_my_custom_banner_css() {
 	?>
-	.cmplz-cookiebanner {
+    .cmplz-cookiebanner {
 
-	}
+    }
 	<?php
 }
 add_action( 'cmplz_banner_css', 'add_my_custom_banner_css' );
@@ -44,7 +61,10 @@ add_action( 'cmplz_banner_css', 'add_my_custom_banner_css' );
  *
  * @return string
  */
-function cmplz_custom_banner_html($html){
-    return file_get_contents(trailingslashit(WPMU_PLUGIN_DIR).'cookiebanner.php');
+function cmplz_custom_banner_html( $path, $filename ){
+	if ($filename==='cookiebanner.php') {
+		return trailingslashit(WPMU_PLUGIN_DIR).'cookiebanner/cookiebanner.php';
+	}
+	return $path;
 }
-add_filter('cmplz_banner_html', 'cmplz_custom_banner_html');
+add_filter('cmplz_template_file', 'cmplz_custom_banner_html', 10, 2);

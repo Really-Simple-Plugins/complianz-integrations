@@ -4,7 +4,23 @@
  * A common example is when YouTube videos will shift your lay-out when blocked prior to consent
  */
 
-function cmplz_add_div_iframe() {
+/**
+ * @param string $html
+ *
+ * @return string
+ */
+function cmplz_add_div_iframe($html){
+    return '<div>'.$html.'</div>';
+}
+add_filter( 'cmplz_iframe_html', 'cmplz_add_div_iframe' );
+
+
+/**
+ * jquery alternative
+ * @return void
+ */
+
+function cmplz_add_div_iframe_jquery() {
     ?>
     <script>
         jQuery(document).ready(function ($) {
@@ -13,4 +29,4 @@ function cmplz_add_div_iframe() {
     </script>
     <?php
 }
-add_action( 'wp_footer', 'cmplz_add_div_iframe' );
+add_action( 'wp_footer', 'cmplz_add_div_iframe_jquery' );

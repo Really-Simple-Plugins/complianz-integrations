@@ -16,7 +16,8 @@ function cmplz_obfuscate_shortcode(
 	), $atts, $tag );
 	$email = sanitize_email($atts['email']);
 	ob_start();
-	echo COMPLIANZ::$document->obfuscate_email($email);
+	$css = '<style>.cmplz-obfuscate {direction: rtl;unicode-bidi: bidi-override;}</style>';
+	echo $css.COMPLIANZ::$document->obfuscate_email($email);
 	return ob_get_clean();
 }
 add_shortcode( 'cmplz_obfuscate', 'cmplz_obfuscate_shortcode' );

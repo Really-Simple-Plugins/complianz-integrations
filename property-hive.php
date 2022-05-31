@@ -1,12 +1,6 @@
 <?php
 /**
  * Block Google Maps embedded by the property hive plugin
- *
- */
-
-
-/**
- * Block the script
  * Add a placeholder to a div with class "cmplz-maps-placeholder"
  * @param $tags
  *
@@ -18,7 +12,7 @@ function cmplz_custom_googlemaps_script( $tags ) {
 		'category' => 'marketing',
 		'placeholder' => 'google-maps',
 		'urls' => array(
-			'maps.googleapis.com/maps/api/js',
+			'maps.googleapis.com',
 			'initialize_property_map',
 		),
 		'enable_placeholder' => '1',

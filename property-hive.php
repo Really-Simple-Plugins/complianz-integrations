@@ -16,6 +16,7 @@ function cmplz_custom_googlemaps_script( $tags ) {
 			'initialize_property_map',
 		),
 		'enable_placeholder' => '1',
+		// Create the placeholder class by adding it to the Google Map DIV.
 		'placeholder_class' => 'cmplz-maps-placeholder',
 		'enable_dependency' => '1',
 		'dependency' => [

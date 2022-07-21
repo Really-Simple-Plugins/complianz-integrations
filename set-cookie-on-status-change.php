@@ -11,15 +11,14 @@ function cmplz_social_media_script() {
             let expires = ";expires=" + date.toGMTString();
             document.cookie = name + "=" + value + ";SameSite=Lax" + secure + expires;
         }
-        document.addEventListener('click', e => {
-            if ( e.target.closest('.cmplz-save-preferences') ) {
-                let marketing_enabled = document.querySelector('input.cmplz-marketing').checked;
-                if (marketing_enabled) {
-                    cmplz_set_rlx_cookie(true);
-                } else {
-                    cmplz_set_rlx_cookie(false);
-                }
+
+        document.addEventListener('cmplz_status_change', function (e) {
+            if (e.detail.category === 'marketing' && e.detail.value==='deny') {
+                cmplz_set_rlx_cookie(true);
+            } else {
+                cmplz_set_rlx_cookie(false);
             }
+            e.preventDefault();
         });
 
         document.addEventListener("cmplz_before_cookiebanner", function(e) {

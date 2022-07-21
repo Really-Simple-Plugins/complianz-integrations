@@ -1,30 +1,42 @@
 <?php
-/**
- * v: 6.0
- * A snippet to redirect a user to another page when the status i
- */
-
-function cmplz_set_rlx() {
+function cmplz_social_media_script() {
+	ob_start();
 	?>
-	<script>
-        //maybe a default value is required.
-        // document.addEventListener("cmplz_before_cookiebanner", function() {
-
-        // });
-        document.addEventListener('cmplz_status_change', function (e) {
-            let value = false;
+    <script>
+        function cmplz_set_rlx_cookie(value){
             let secure = ";secure";
             let date = new Date();
             let name = 'rlx-consent';
-            if (e.detail.category === 'marketing' && e.detail.value==='allow') {
-                value = true;
-            }
             date.setTime(date.getTime() + (complianz.cookie_expiry * 24 * 60 * 60 * 1000));
             let expires = ";expires=" + date.toGMTString();
-            document.cookie = name + "=" + value + ";SameSite=Lax" + secure + expires + ";path="+cmplz_get_cookie_path();
-            e.preventDefault();
+            document.cookie = name + "=" + value + ";SameSite=Lax" + secure + expires;
+        }
+        document.addEventListener('click', e => {
+            if ( e.target.closest('.cmplz-save-preferences') ) {
+                let marketing_enabled = document.querySelector('input.cmplz-marketing').checked;
+                if (marketing_enabled) {
+                    cmplz_set_rlx_cookie(true);
+                } else {
+                    cmplz_set_rlx_cookie(false);
+                }
+            }
         });
-	</script>
+
+        document.addEventListener("cmplz_before_cookiebanner", function(e) {
+            if (cmplz_get_cookie('marketing') === 'allow'){
+                cmplz_set_rlx_cookie(true);
+            } else {
+                cmplz_set_rlx_cookie(false);
+            }
+        });
+
+        document.addEventListener("cmplz_revoke", function(e) {
+            cmplz_set_rlx_cookie(false);
+        });
+    </script>
 	<?php
+	$script = ob_get_clean();
+	$script = str_replace(array('<script>', '</script>'), '', $script);
+	wp_add_inline_script( 'cmplz-cookiebanner', $script );
 }
-add_action( 'wp_footer', 'cmplz_set_rlx' );
+add_action( 'wp_enqueue_scripts', 'cmplz_set_rlx',PHP_INT_MAX );

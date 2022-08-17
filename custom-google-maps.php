@@ -35,6 +35,30 @@ function cmplz_custom_googlemaps_script( $tags ) {
 add_filter( 'cmplz_known_script_tags', 'cmplz_custom_googlemaps_script' );
 
 
+/**
+ * Trigger the DomContentLoaded event
+ * This is not always needed, but in a plugin initializes on document load or ready, the map won't show on consent because this event already ran.
+ * This will re-trigger that.
+ *
+ */
+
+function cmplz_custom_maps_initDomContentLoaded() {
+	ob_start();
+	?>
+	<script>
+        document.addEventListener("cmplz_run_after_all_scripts", cmplz_fire_domContentLoadedEvent);
+        function cmplz_fire_domContentLoadedEvent() {
+            dispatchEvent(new Event('load'));
+        }
+	</script>
+	<?php
+	$script = ob_get_clean();
+	$script = str_replace(array('<script>', '</script>'), '', $script);
+	wp_add_inline_script( 'cmplz-cookiebanner', $script );
+}
+add_action( 'wp_enqueue_scripts', 'cmplz_custom_maps_initDomContentLoaded',PHP_INT_MAX );
+
+
 
 
 

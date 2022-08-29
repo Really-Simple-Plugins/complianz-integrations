@@ -21,7 +21,7 @@
 			<div class="cmplz-custom-message">
 					<span class="cmplz-custom-title">Give permission or set your own choice</span>
 					<div class="cmplz-links cmplz-documents">
-						<span class="cmplz-custom-text">Your consent applies to this media and you can change it again through your privacy settings ion our website. Read more in our <a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a>
+						<span class="cmplz-custom-text">Your consent applies to this media and you can change it again through your privacy settings on our website. Read more in our <a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a>
 						and <a class="cmplz-link privacy-statement" href="#" data-relative_url="">{title}</a></span>
 						<?php do_action("cmplz_after_documents")?>
 							</div>

@@ -23,9 +23,9 @@ function cmplz_webnus_modern_events_googlemaps_script( $tags ) {
 		'enable_dependency' => '1',
 		'dependency' => [
 			//'wait-for-this-script' => 'script-that-should-wait'
-			'function mec_init_gmap' => 'richmarker',
             'maps.googleapis.com/maps/api/js' => 'googlemap.js',
-            'googlemap.js' => 'function mec_init_gmap',
+			'googlemap.js' => 'richmarker',
+			'richmarker' => 'function mec_init_gmap',
 		],
 	);
 	return $tags;
@@ -33,7 +33,6 @@ function cmplz_webnus_modern_events_googlemaps_script( $tags ) {
 add_filter( 'cmplz_known_script_tags', 'cmplz_webnus_modern_events_googlemaps_script' );
 
 /* Trigger domContentLoaded event, not always needed 
-
 function cmplz_custom_maps_initDomContentLoaded() {
 	ob_start();
 	?>
@@ -49,7 +48,6 @@ function cmplz_custom_maps_initDomContentLoaded() {
 	wp_add_inline_script( 'cmplz-cookiebanner', $script );
 }
 add_action( 'wp_enqueue_scripts', 'cmplz_custom_maps_initDomContentLoaded',PHP_INT_MAX );
-
 */
 
 /**

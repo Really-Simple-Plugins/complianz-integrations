@@ -70,6 +70,16 @@ function cmplz_set_rlx() {
             }
         });
 
+        document.addEventListener("cmplz_fire_categories", function (e) {
+            var consentedCategories = e.detail.categories;
+            if ( cmplz_in_array( 'marketing', consentedCategories ) ) {
+                cmplz_set_cookie('rlx', 'allow');
+            }
+            if ( cmplz_in_array( 'rlx', consentedCategories ) ) {
+                cmplz_set_cookie('rlx', 'allow');
+            }
+        });
+
         document.addEventListener("cmplz_before_cookiebanner", function(e) {
             console.log("before cookie banner");
             if (cmplz_get_cookie('rlx') === 'allow'){

@@ -51,7 +51,7 @@ function cmplz_set_rlx() {
             console.log("set cookie with string "+name + "=" + value + ";SameSite=Lax" + secure + expires);
             document.cookie = name + "=" + value + ";SameSite=Lax" + secure + expires;
         }
-        
+
         //set a default false value, as workaround for rlx issue which checks for false cookie, instead of also checking for not-existing one.
         cmplz_set_rlx_cookie(false);
 

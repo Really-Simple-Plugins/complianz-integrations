@@ -86,10 +86,14 @@ function cmplz_set_rlx() {
         });
 
         document.addEventListener("cmplz_before_cookiebanner", function(e) {
-            console.log("before cookie banner");
-            if (cmplz_get_cookie('rlx') === 'allow'){
+
+            if ( cmplz_get_cookie('rlx') === 'allow'){
                 console.log("set checkbox rlx to true");
                 document.querySelector('input.cmplz-rlx').checked = true;
+                _satellite.setVar("Analyticsconsent","true");
+                _satellite.track("PageView");
+            } else {
+                _satellite.setVar("Analyticsconsent","false");
             }
         });
 

@@ -6,7 +6,7 @@ function cmplz_set_denied_time_cookie() {
 
         document.addEventListener("cmplz_banner_status", function(consentData) {
             var status = consentData.detail;
-            if ( status == 'dismissed' ) {
+            if ( status === 'dismissed' ) {
                 let daysValid = 365;
                 let secure = ";secure";
                 let date = new Date();
@@ -32,7 +32,7 @@ function cmplz_set_denied_time_cookie() {
 
             let date = new Date();
             let current_time = date.getTime();
-            let expire_on = denied_time + (7 * 24 * 60 * 60 * 1000);
+            let expire_on = parseInt(denied_time) + (7 * 24 * 60 * 60 );
             console.log("expire on "+expire_on);
             if ( current_time > expire_on ){
                 console.log("expired");

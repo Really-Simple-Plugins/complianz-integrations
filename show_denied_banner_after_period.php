@@ -24,13 +24,18 @@ function cmplz_set_denied_time_cookie() {
             let denied_time;
             for (let i = 0; i < cArr.length; i++) {
                 let c = cArr[i].trim();
+                console.log("check cookie "+c);
                 if (c.indexOf(cmplz_cookie_name) == 0)
                     denied_time = c.substring(cmplz_cookie_name.length, c.length);
             }
+            console.log("found time "+denied_time);
+
             let date = new Date();
             let current_time = date.getTime();
             let expire_on = denied_time + (7 * 24 * 60 * 60 * 1000);
+            console.log("expire on "+expire_on);
             if ( current_time > expire_on ){
+                console.log("expired");
                 cmplz_set_banner_status('show');
             }
         });

@@ -52,11 +52,6 @@ function cmplz_set_rlx() {
             document.cookie = name + "=" + value + ";SameSite=Lax" + secure + expires;
         }
 
-        //set a default false value, as workaround for rlx issue which checks for false cookie, instead of also checking for not-existing one.
-        if ( cmplz_get_cookie('rlx') !== 'allow' && cmplz_get_cookie('rlx') !== 'deny' ){
-            cmplz_set_rlx_cookie(false);
-        }
-
         /**
          * Set a complianz rlx cookie and the custom cookie on save preferences
          */
@@ -86,7 +81,6 @@ function cmplz_set_rlx() {
         });
 
         document.addEventListener("cmplz_before_cookiebanner", function(e) {
-
             if ( cmplz_get_cookie('rlx') === 'allow'){
                 console.log("set checkbox rlx to true");
                 document.querySelector('input.cmplz-rlx').checked = true;
@@ -94,6 +88,8 @@ function cmplz_set_rlx() {
                 _satellite.track("PageView");
             } else {
                 _satellite.setVar("Analyticsconsent","false");
+                //set a default false value, as workaround for rlx issue which checks for false cookie, instead of also checking for not-existing one.
+                cmplz_set_rlx_cookie(false);
             }
         });
 

@@ -21,8 +21,8 @@ function cmplz_set_denied_time_cookie() {
             let secure = ";secure";
             let date = new Date();
             // let ask_again_on = date.setTime(date.getTime()) + (24 * 60 * 60 * 1000);
-            //20 seconds
-            let ask_again_on = date.setTime(date.getTime()) + (60 * 1000);
+            //60 seconds
+            // let ask_again_on = date.setTime(date.getTime()) + (60 * 1000);
 
             date.setTime(date.getTime() + (daysValid * 24 * 60 * 60 * 1000));
             let expires = ";expires=" + date.toGMTString();
@@ -41,7 +41,6 @@ function cmplz_set_denied_time_cookie() {
                 let date = new Date();
                 let current_time = date.getTime();
 
-                // let expire_on = parseInt(denied_time) + (7 * 24 * 60 * 60 * 1000 );
                 let expire_on = parseInt(denied_time);
                 console.log("current time "+current_time);
                 console.log("expire on "+expire_on);

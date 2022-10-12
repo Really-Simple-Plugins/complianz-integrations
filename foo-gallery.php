@@ -2,7 +2,7 @@
 
 function my_foo_gallery_block_content( $html ){
 	if ( cmplz_uses_thirdparty('youtube') ) {
-		$pattern = '/fg-type-video.*<a href="(.*?")/i';
+		$pattern = '/fg-type-video.*?<a href="(.*?)"/i';
 		if ( preg_match_all( $pattern, $html,
 			$matches, PREG_PATTERN_ORDER )
 		) {
@@ -10,7 +10,7 @@ function my_foo_gallery_block_content( $html ){
 				$el     = $matches[0][ $key ];
 				$src     = $matches[1][ $key ];
 				if (strpos($src, 'youtube') !== false) {
-					$new_el = str_replace( 'class="', 'class="cmplz-placeholder-element ', $el );
+					$new_el = str_replace( 'class="fg-item-inner', 'class="fg-item-inner cmplz-placeholder-element ', $el );
 					$html   = str_replace( $el, $new_el, $html );
 				}
 			}

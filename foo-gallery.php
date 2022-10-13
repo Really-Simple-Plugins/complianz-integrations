@@ -29,6 +29,7 @@ function my_cmplz_foo_gallery_css() {
                 width: 100%;
                 top: 0;
                 left: 0;
+		bottom: 0;
                 padding:3px;
                 transform: translate(0, 0);
                 font-size: 12px;

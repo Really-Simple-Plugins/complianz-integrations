@@ -20,7 +20,7 @@ function cmplz_set_denied_time_cookie() {
 
             let secure = ";secure";
             let date = new Date();
-            // let ask_again_on = date.setTime(date.getTime()) + (24 * 60 * 60 * 1000);
+            let ask_again_on = date.setTime(date.getTime()) + (24 * 60 * 60 * 1000);
             //60 seconds
             // let ask_again_on = date.setTime(date.getTime()) + (60 * 1000);
 

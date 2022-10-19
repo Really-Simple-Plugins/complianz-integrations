@@ -3,6 +3,7 @@ function cmplz_set_denied_time_cookie() {
 	ob_start(); ?>
     <script>
         let cmplz_cookie_name = 'denied_time';
+        let ask_again_after_seconds = 60 * 60 * 24 * 7; //7 days
         function get_denied_time(){
             let cookie_name = cmplz_cookie_name + "=";
             let cArr = document.cookie.split(';');
@@ -17,19 +18,15 @@ function cmplz_set_denied_time_cookie() {
 
         function set_denied_cookie(){
             let daysValid = 365;
-
             let secure = ";secure";
             let date = new Date();
-            let ask_again_on = date.setTime(date.getTime()) + (24 * 60 * 60 * 1000);
-            //60 seconds
-            // let ask_again_on = date.setTime(date.getTime()) + (60 * 1000);
+            let ask_again_on = date.setTime(date.getTime()) + (ask_again_after_seconds * 1000);
 
             date.setTime(date.getTime() + (daysValid * 24 * 60 * 60 * 1000));
             let expires = ";expires=" + date.toGMTString();
             if (window.location.protocol !== "https:") secure = '';
             document.cookie = cmplz_cookie_name + "=" + ask_again_on + ";SameSite=Lax" + secure + expires;
         }
-
 
         document.addEventListener("cmplz_cookie_warning_loaded", function() {
             let denied_time = get_denied_time();
@@ -44,7 +41,7 @@ function cmplz_set_denied_time_cookie() {
                 let expire_on = parseInt(denied_time);
                 console.log("current time "+current_time);
                 console.log("expire on "+expire_on);
-                console.log(expire_on - current_time);
+                console.log( (expire_on - current_time)/1000);
                 if ( current_time > expire_on ){
                     console.log("expired");
                     cmplz_set_banner_status('show');

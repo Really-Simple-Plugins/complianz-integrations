@@ -1,6 +1,6 @@
 <?php
 /**
- * Block Google Maps embedded by the Progress Map plugin
+ * Block Google Maps from Codespacing Progress Map plugin
  * @param $tags
  * @return array
  */

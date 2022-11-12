@@ -29,7 +29,7 @@ function cmplz_custom_googlemaps_script( $tags ) {
 		'dependency' => [
 			//'wait-for-this-script' => 'script-that-should-wait'
 			'maps.googleapis.com' => 'infobox',
-			'maps.googleapis.com' => 'homey-maps',
+			'infobox' => 'homey-maps', //has to have a different key
 		],
 	);
 	return $tags;

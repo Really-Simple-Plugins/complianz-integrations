@@ -21,15 +21,15 @@ function cmplz_custom_googlemaps_script( $tags ) {
 		'urls' => array(
 			'maps.googleapis.com',
 			'homey-maps',
-			'infobox',
+			'infoxbox_packed',
 		),
 		'enable_placeholder' => '1',
 		'placeholder_class' => 'map-section',
 		'enable_dependency' => '1',
 		'dependency' => [
 			//'wait-for-this-script' => 'script-that-should-wait'
-			'maps.googleapis.com' => 'infobox',
-			'infobox' => 'homey-maps', //has to have a different key
+			'maps.googleapis.com' => 'infoxbox_packed',
+			'infoxbox_packed' => 'homey-maps', //has to have a different key
 		],
 	);
 	return $tags;

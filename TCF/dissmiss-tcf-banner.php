@@ -6,7 +6,7 @@ function cmplz_dismiss_tcf_banner() {
         if ( document.querySelector('.cmplz-document.cookie-statement') ){
             const wrapper = document.createElement('div');
             wrapper.innerHTML = '<a href="javascript:history.back()">Go Back</a>';
-            wrapper.classList.add('cmplz-manage-consent');
+            wrapper.classList.add('cmplz-back-button');
             wrapper.style.position = 'fixed';
             wrapper.style.bottom = 0;
             wrapper.style.right = "30px";

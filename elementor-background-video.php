@@ -1,6 +1,8 @@
 <?php
 defined( 'ABSPATH' ) or die();
 
+#set to true to enable placeholders
+define('CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER', false);
 /**
  *
  */
@@ -96,7 +98,11 @@ function cmplz_elementor_cookieblocker_backgroundvideo( $output ){
 
 				$new_match = str_replace('data-settings', $placeholder.' data-category="marketing" data-service="youtube" data-cmplz-elementor-settings', $total_match);
 				$new_match = str_replace('data-widget_type', 'data-cmplz_elementor_widget_type', $new_match);
-				$new_match = str_replace('class="', 'class="cmplz-elementor-video_background cmplz-placeholder-element ', $new_match);
+				if (CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER) {
+					$new_match = str_replace('class="', 'class="cmplz-elementor-video_background cmplz-placeholder-element ', $new_match);
+				} else {
+					$new_match = str_replace('class="', 'class="cmplz-elementor-video_background ', $new_match);
+				}
 				$output = str_replace($total_match, $new_match, $output);
 			}
 		}

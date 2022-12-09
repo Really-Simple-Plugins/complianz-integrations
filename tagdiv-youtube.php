@@ -10,6 +10,8 @@ function tagdiv_youtube_playlist( $tags ) {
 		'placeholder_class' => 'td_block_video_playlist',
 		'urls' => array(
 			'//www.youtube.com/embed',
+			'img.youtube.com',
+			'td_youtube_list_ids',
 		),
 	);
 

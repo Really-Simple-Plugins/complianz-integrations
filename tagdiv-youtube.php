@@ -12,6 +12,7 @@ function tagdiv_youtube_playlist( $tags ) {
 			'//www.youtube.com/embed',
 			'img.youtube.com',
 			'td_youtube_list_ids',
+			'//www.youtube.com.player_api',
 		),
 	);
 

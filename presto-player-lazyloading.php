@@ -9,7 +9,7 @@ function cmplz_presto_lazy_load( $tags ) {
 	}
 
 
-	$youtube_index = array_search( 'vimeo', array_column( $tags, 'name' ), true );
+	$youtube_index = array_search( 'youtube', array_column( $tags, 'name' ), true );
 	if ( $youtube_index!==false ) {
 		$tags[ $youtube_index ]['enable_placeholder'] = '1';
 		$tags[ $youtube_index ]['placeholder_class']  = 'presto-block-video';

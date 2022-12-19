@@ -1,6 +1,11 @@
 <?php
 defined( 'ABSPATH' ) or die();
 /**
+ *  Take care to update 'facetwp-map' in the below code to your actual FacetWP map id.
+ */
+
+
+/**
  * props @Idan-noiza
  * https://github.com/Really-Simple-Plugins/complianz-gdpr/issues/348
  */
@@ -53,11 +58,11 @@ function cmplz_facetwp_map_initDomContentLoaded() {
         }
 
         /**
-         * Wait for 'map-html-id' to be initialized
+         * Wait for 'facetwp-map' to be initialized
          *
          */
         const checkIfMapIsInitialized = () => {
-            const map = document.getElementById('map-html-id');
+            const map = document.getElementById('facetwp-map');
             return map.children.length > 0 && FWP_MAP.markersArray.length > 0;
         }
 
@@ -69,7 +74,7 @@ function cmplz_facetwp_map_initDomContentLoaded() {
             if (typeof FWP !== 'undefined' && typeof FWP_MAP !== 'undefined' && typeof FWP_MAP.map !== 'undefined') {
                 return true;
             }
-            await sleep(1000);
+            await sleep(500);
             checkIfFWPExists();
         }
 
@@ -77,13 +82,13 @@ function cmplz_facetwp_map_initDomContentLoaded() {
          * Reinitialize FacetWP Google Maps' map
          *
          */
-        const reinitiliazeMap = async () => {
+        const reinitializeMap = async () => {
             FWP.loaded = false;
             delete FWP.frozen_facets.map_facet;
             FWP.refresh();
             await sleep(6000);
             if (checkIfMapIsInitialized() !== true) {
-                reinitiliazeMap();
+                reinitializeMap();
             }
         }
 
@@ -98,7 +103,7 @@ function cmplz_facetwp_map_initDomContentLoaded() {
             await checkIfFWPExists();
 
             if (checkIfMapIsInitialized() !== true) {
-                await reinitiliazeMap();
+                await reinitializeMap();
             }
         }
 

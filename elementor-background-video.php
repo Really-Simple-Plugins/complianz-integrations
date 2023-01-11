@@ -8,10 +8,57 @@ define('CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER', false);
  */
 
 function cmplz_elementor_backgroundvideo() {
-	if ( cmplz_uses_thirdparty('youtube') || cmplz_uses_thirdparty('facebook') || cmplz_uses_thirdparty('twitter') ) {
+	if ( cmplz_uses_thirdparty('youtube') ) {
 		ob_start();
 		?>
-		<script>
+        <script>
+            /**
+             * This part adds the youtube screen as background image as long as consent is not given.
+             */
+            document.addEventListener("cmplz_before_cookiebanner", function() {
+                document.querySelectorAll('.cmplz-elementor-video_background').forEach(obj => {
+                    if ( obj.classList.contains('cmplz-processed') ) {
+                        return;
+                    }
+                    obj.classList.add('cmplz-processed' );
+                    let service = obj.getAttribute('data-service');
+                    let category = obj.getAttribute('data-category');
+
+                    //we set this element as container with placeholder image
+                    let blocked_content_container;
+                    if ( obj.classList.contains('cmplz-iframe')) {
+                        //handle browser native lazy load feature
+                        if ( obj.getAttribute('loading') === 'lazy' ) {
+                            obj.removeAttribute('loading');
+                            obj.setAttribute('data-deferlazy', 1);
+                        }
+                        blocked_content_container = obj.parentElement;
+                    } else {
+                        blocked_content_container = obj;
+                    }
+                    let curIndex = blocked_content_container.getAttribute('data-placeholder_class_index');
+                    //if the blocked content container class is already added, don't add it again
+                    if ( curIndex == null ) {
+                        cmplz_placeholder_class_index++;
+                        blocked_content_container.classList.add('cmplz-placeholder-' + cmplz_placeholder_class_index);
+                        blocked_content_container.classList.add('cmplz-blocked-content-container');
+                        blocked_content_container.setAttribute('data-placeholder_class_index', cmplz_placeholder_class_index);
+                        // cmplz_insert_placeholder_text(blocked_content_container, category, service);
+                        //handle image size for video
+                        let src = obj.getAttribute('data-placeholder-image');
+                        if (src && typeof src !== 'undefined' && src.length ) {
+                            src = src.replace('url(', '').replace(')', '').replace(/\"/gi, "");
+                            cmplz_append_css('.cmplz-placeholder-' + cmplz_placeholder_class_index + ' {background-image: url(' + src + ') !important;}');
+                            cmplz_set_blocked_content_container_aspect_ratio(obj, src, cmplz_placeholder_class_index);
+                        }
+                    }
+                });
+
+            });
+
+            /**
+             * After enabling the category, consent is handled here
+             */
             document.addEventListener("cmplz_enable_category", function(consentData) {
                 var category = consentData.detail.category;
                 var services = consentData.detail.services;
@@ -40,7 +87,7 @@ function cmplz_elementor_backgroundvideo() {
                     blockedContentContainers.push(obj);
                 });
 
-                document.querySelectorAll(selectorGeneric).forEach(obj => {
+                document.querySelectorAll(selectorVideo).forEach(obj => {
                     let elementService = obj.getAttribute('data-service');
                     if ( cmplz_is_service_denied(elementService) ) {
                         return;
@@ -68,7 +115,7 @@ function cmplz_elementor_backgroundvideo() {
                 }
 
             });
-		</script>
+        </script>
 		<?php
 		$script = ob_get_clean();
 		$script = str_replace(array('<script>', '</script>'), '', $script);
@@ -91,7 +138,7 @@ function cmplz_elementor_cookieblocker_backgroundvideo( $output ){
 		if ( preg_match_all( $iframe_pattern, $output, $matches, PREG_PATTERN_ORDER ) ) {
 			foreach ( $matches[0] as $key => $total_match ) {
 				$placeholder = '';
-				if ( cmplz_use_placeholder('youtube') && isset($matches[1][$key]) ) {
+				if ( isset($matches[1][$key]) && cmplz_use_placeholder('youtube') ) {
 					$youtube_url = $matches[1][$key];
 					$placeholder = 'data-placeholder-image="'.cmplz_placeholder( false, stripcslashes($youtube_url) ).'" ';
 				}

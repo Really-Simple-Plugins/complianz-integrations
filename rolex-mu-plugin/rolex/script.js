@@ -70,6 +70,11 @@ function cmplz_revoke_rolex(){
     if ( typeof _satellite === 'object') {
         _satellite.setVar("Analyticsconsent","false");
     }
+
+    let rlxCorner = document.getElementById("rlx-corner");
+    if ( rlxCorner ) {
+        rlxCorner.contentWindow.postMessage('consentFalse','https://corners.Rolex.com');
+    }
     //set a default false value, as workaround for rlx issue which checks for false cookie, instead of also checking for not-existing one.
     cmplz_set_rlx_cookie(false);
     cmplz_rolex_enabled = false;

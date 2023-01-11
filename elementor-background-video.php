@@ -43,7 +43,11 @@ function cmplz_elementor_backgroundvideo() {
                         blocked_content_container.classList.add('cmplz-placeholder-' + cmplz_placeholder_class_index);
                         blocked_content_container.classList.add('cmplz-blocked-content-container');
                         blocked_content_container.setAttribute('data-placeholder_class_index', cmplz_placeholder_class_index);
+                        /**
+                         * Uncomment the below if you want a placeholder text on your screen capture.
+                         */
                         // cmplz_insert_placeholder_text(blocked_content_container, category, service);
+                            
                         //handle image size for video
                         let src = obj.getAttribute('data-placeholder-image');
                         if (src && typeof src !== 'undefined' && src.length ) {

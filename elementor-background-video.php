@@ -1,8 +1,10 @@
 <?php
 defined( 'ABSPATH' ) or die();
 
-#set to true to enable placeholders
-define('CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER', false);
+#set to false to disable placeholders
+define('CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER', true);
+#set to true to enable a placeholder accept button
+define('CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER_BUTTON', false);
 /**
  *
  */
@@ -12,6 +14,7 @@ function cmplz_elementor_backgroundvideo() {
 		ob_start();
 		?>
         <script>
+			<?php if (CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER) {?>
             /**
              * This part adds the youtube screen as background image as long as consent is not given.
              */
@@ -44,10 +47,11 @@ function cmplz_elementor_backgroundvideo() {
                         blocked_content_container.classList.add('cmplz-blocked-content-container');
                         blocked_content_container.setAttribute('data-placeholder_class_index', cmplz_placeholder_class_index);
                         /**
-                         * Uncomment the below if you want a placeholder text on your screen capture.
+                         * Use below if you want a placeholder text on your screen capture.
                          */
-                        // cmplz_insert_placeholder_text(blocked_content_container, category, service);
-                            
+						<?php if (CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER_BUTTON) {?>
+                        cmplz_insert_placeholder_text(blocked_content_container, category, service);
+						<?php  } ?>
                         //handle image size for video
                         let src = obj.getAttribute('data-placeholder-image');
                         if (src && typeof src !== 'undefined' && src.length ) {
@@ -59,7 +63,7 @@ function cmplz_elementor_backgroundvideo() {
                 });
 
             });
-
+			<?php } ?>
             /**
              * After enabling the category, consent is handled here
              */
@@ -149,11 +153,27 @@ function cmplz_elementor_cookieblocker_backgroundvideo( $output ){
 
 				$new_match = str_replace('data-settings', $placeholder.' data-category="marketing" data-service="youtube" data-cmplz-elementor-settings', $total_match);
 				$new_match = str_replace('data-widget_type', 'data-cmplz_elementor_widget_type', $new_match);
-				if (CMPLZ_ELEMENTOR_BACKGROUND_PLACEHOLDER) {
-					$new_match = str_replace('class="', 'class="cmplz-elementor-video_background cmplz-placeholder-element ', $new_match);
-				} else {
-					$new_match = str_replace('class="', 'class="cmplz-elementor-video_background ', $new_match);
+				$new_match = str_replace('class="', 'class="cmplz-elementor-video_background ', $new_match);
+				$output = str_replace($total_match, $new_match, $output);
+			}
+		}
+	}
+
+	if ( cmplz_uses_thirdparty('vimeo') ) {
+		/**
+		 * Video background
+		 */
+		$iframe_pattern = '/[^>]section class=.*?data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?player.vimeo.com.+?(?=&quot))&quot;/is';
+		if ( preg_match_all( $iframe_pattern, $output, $matches, PREG_PATTERN_ORDER ) ) {
+			foreach ( $matches[0] as $key => $total_match ) {
+				$placeholder = '';
+				if ( isset($matches[1][$key]) && cmplz_use_placeholder('vimeo') ) {
+					$url = $matches[1][$key];
+					$placeholder = 'data-placeholder-image="'.cmplz_placeholder( false, stripcslashes($url) ).'" ';
 				}
+				$new_match = str_replace('data-settings', $placeholder.' data-category="marketing" data-service="vimeo" data-cmplz-elementor-settings', $total_match);
+				$new_match = str_replace('data-widget_type', 'data-cmplz_elementor_widget_type', $new_match);
+				$new_match = str_replace('class="', 'class="cmplz-elementor-video_background ', $new_match);
 				$output = str_replace($total_match, $new_match, $output);
 			}
 		}
@@ -162,5 +182,3 @@ function cmplz_elementor_cookieblocker_backgroundvideo( $output ){
 	return $output;
 }
 add_filter('cmplz_cookie_blocker_output', 'cmplz_elementor_cookieblocker_backgroundvideo');
-
-

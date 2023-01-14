@@ -142,7 +142,7 @@ function cmplz_elementor_cookieblocker_backgroundvideo( $output ){
 		/**
 		 * Video background
 		 */
-		$iframe_pattern = '/[^>]section class=.*?data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?youtu.+?(?=&quot;))&quot;/is';
+		$iframe_pattern = '/[^>]section" data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?youtu.+?(?=&quot;))&quot;/is';
 		if ( preg_match_all( $iframe_pattern, $output, $matches, PREG_PATTERN_ORDER ) ) {
 			foreach ( $matches[0] as $key => $total_match ) {
 				$placeholder = '';
@@ -163,7 +163,7 @@ function cmplz_elementor_cookieblocker_backgroundvideo( $output ){
 		/**
 		 * Video background
 		 */
-		$iframe_pattern = '/[^>]section class=.*?data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?player.vimeo.com.+?(?=&quot))&quot;/is';
+		$iframe_pattern = '/[^>]section" data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?player.vimeo.com.+?(?=&quot))&quot;/is';
 		if ( preg_match_all( $iframe_pattern, $output, $matches, PREG_PATTERN_ORDER ) ) {
 			foreach ( $matches[0] as $key => $total_match ) {
 				$placeholder = '';

@@ -87,8 +87,8 @@ function cmplz_elementor_backgroundvideo() {
 
                     if ( obj.hasAttribute('data-cmplz_elementor_widget_type') ){
                         let attr = obj.getAttribute('data-cmplz_elementor_widget_type');
-                        obj.classList.removeAttribute('data-cmplz_elementor_widget_type');
-                        obj.classList.setAttribute('data-widget_type', attr);
+                        obj.removeAttribute('data-cmplz_elementor_widget_type');
+                        obj.setAttribute('data-widget_type', attr);
                     }
 
                     obj.setAttribute('data-settings', obj.getAttribute('data-cmplz-elementor-settings'));

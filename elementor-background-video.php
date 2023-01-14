@@ -18,8 +18,11 @@ function cmplz_elementor_backgroundvideo() {
             /**
              * This part adds the youtube screen as background image as long as consent is not given.
              */
+            console.log("video bg test");
+
             document.addEventListener("cmplz_before_cookiebanner", function() {
                 document.querySelectorAll('.cmplz-elementor-video_background').forEach(obj => {
+                    console.log("video bg");
                     if ( obj.classList.contains('cmplz-processed') ) {
                         return;
                     }
@@ -142,7 +145,7 @@ function cmplz_elementor_cookieblocker_backgroundvideo( $output ){
 		/**
 		 * Video background
 		 */
-		$iframe_pattern = '/[^>]section" data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?youtu.+?(?=&quot;))&quot;/is';
+		$iframe_pattern = '/<section class="elementor-section.*?[^>]section" data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?youtu.+?(?=&quot;))&quot;/is';
 		if ( preg_match_all( $iframe_pattern, $output, $matches, PREG_PATTERN_ORDER ) ) {
 			foreach ( $matches[0] as $key => $total_match ) {
 				$placeholder = '';
@@ -163,7 +166,7 @@ function cmplz_elementor_cookieblocker_backgroundvideo( $output ){
 		/**
 		 * Video background
 		 */
-		$iframe_pattern = '/[^>]section" data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?player.vimeo.com.+?(?=&quot))&quot;/is';
+		$iframe_pattern = '/<section class="elementor-section.*?[^>]section" data-settings="[^"]+?background_video_link[^;]*?&quot;:&quot;(https:.*?player.vimeo.com.+?(?=&quot))&quot;/is';
 		if ( preg_match_all( $iframe_pattern, $output, $matches, PREG_PATTERN_ORDER ) ) {
 			foreach ( $matches[0] as $key => $total_match ) {
 				$placeholder = '';

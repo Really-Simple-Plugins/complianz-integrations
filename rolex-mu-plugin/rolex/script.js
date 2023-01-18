@@ -1,4 +1,10 @@
 let cmplz_rolex_enabled = false;
+function cmplz_rlx_cookie_exists() {
+    const value = "; " + document.cookie;
+    const parts = value.split("; rlx-consent=");
+    return parts.length === 2;
+}
+
 function cmplz_set_rlx_cookie(value){
     let secure = ";secure";
     let date = new Date();
@@ -6,6 +12,13 @@ function cmplz_set_rlx_cookie(value){
     date.setTime(date.getTime() + (complianz.cookie_expiry * 24 * 60 * 60 * 1000));
     let expires = ";expires=" + date.toGMTString();
     document.cookie = name + "=" + value + ";SameSite=Lax" + secure + expires;
+}
+/**
+ * set a default false value, as workaround for a Rolex bug: the Rolex code checks for false cookie, instead of also checking for not-existing one.
+ */
+if ( !cmplz_rlx_cookie_exists() ) {
+    console.log("fix for Rolex bug: rlx-consent does not exist. set default false as workaround")
+    cmplz_set_rlx_cookie(false);
 }
 
 /**
@@ -70,7 +83,6 @@ function cmplz_revoke_rolex(){
     if ( typeof _satellite === 'object') {
         _satellite.setVar("Analyticsconsent","false");
     }
-    //set a default false value, as workaround for rlx issue which checks for false cookie, instead of also checking for not-existing one.
     cmplz_set_rlx_cookie(false);
     cmplz_rolex_enabled = false;
 }

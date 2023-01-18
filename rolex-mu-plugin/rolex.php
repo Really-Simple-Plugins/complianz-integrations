@@ -21,11 +21,26 @@ add_filter('cmplz_banner_html', 'cmplz_add_rlx_category');
  * @return void
  */
 function cmplz_enqueue_rlx( ) {
-	//wp_enqueue_script( 'cmplz-adobe', '//assets.adobedtm.com/7e3b3fa0902e/7ba12da1470f/launch-5de25e657d80.min.js', [] );
+	wp_enqueue_script( 'cmplz-adobe', '//assets.adobedtm.com/7e3b3fa0902e/7ba12da1470f/launch-5de25e657d80.min.js', [] );
 	$script = plugin_dir_url(__FILE__). "rolex/script.js";
 	wp_enqueue_script( 'cmplz-rolex', $script, ['cmplz-cookiebanner'], filemtime($script) );
 }
 add_action( 'wp_enqueue_scripts', 'cmplz_enqueue_rlx' );
+
+function cmplz_block_adobe_script( $tags ) {
+	$tags[] = array(
+		'name' => 'rolex',
+		'category' => 'marketing',
+		'urls' => array(
+			'assets.adobedtm.com',
+		),
+		'enable_placeholder' => '0',
+	);
+	return $tags;
+}
+add_filter( 'cmplz_known_script_tags', 'cmplz_block_adobe_script' );
+
+
 
 
 

@@ -13,6 +13,7 @@ function cmplz_set_rlx_cookie(value){
     let expires = ";expires=" + date.toGMTString();
     document.cookie = name + "=" + value + ";SameSite=Lax" + secure + expires;
 }
+
 /**
  * set a default false value, as workaround for a Rolex bug: the Rolex code checks for false cookie, instead of also checking for not-existing one.
  */

@@ -30,7 +30,7 @@ add_action( 'wp_enqueue_scripts', 'cmplz_enqueue_rlx' );
 function cmplz_block_adobe_script( $tags ) {
 	$tags[] = array(
 		'name' => 'rolex',
-		'category' => 'marketing',
+		'category' => 'rlx',
 		'urls' => array(
 			'assets.adobedtm.com',
 		),
@@ -40,6 +40,11 @@ function cmplz_block_adobe_script( $tags ) {
 }
 add_filter( 'cmplz_known_script_tags', 'cmplz_block_adobe_script' );
 
+//<script type="text/javascript">
+//if (typeof _satellite !== 'undefined'){
+//	_satellite.pageBottom();
+//}
+//</script>
 
 
 

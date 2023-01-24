@@ -25,7 +25,6 @@ if ( !cmplz_rlx_cookie_exists() ) {
 /**
  * Set a complianz rlx cookie and the custom cookie on save preferences
  */
-console.log("changed doc");
 document.addEventListener('click', e => {
     if (e.target.closest('.cmplz-save-preferences')) {
         let rlx_enabled = document.querySelector('input.cmplz-rlx').checked;
@@ -35,16 +34,14 @@ document.addEventListener('click', e => {
             cmplz_revoke_rolex();
         }
     }
+    //accept all.
+    if (e.target.closest('.cmplz-accept')) {
+        cmplz_enable_rolex();
+    }
 });
 
 document.addEventListener("cmplz_fire_categories", function (e) {
-    var consentedCategories = e.detail.categories;
-    if ( cmplz_in_array( 'marketing', consentedCategories ) && cmplz_get_cookie('rlx') !== 'deny' ) {
-        cmplz_set_cookie('rlx', 'allow');
-        cmplz_enable_rolex();
-    }
-
-    if ( cmplz_in_array( 'rlx', consentedCategories ) ) {
+    if ( cmplz_get_cookie('rlx') === 'allow' ) {
         cmplz_set_cookie('rlx', 'allow');
         cmplz_enable_rolex();
     }

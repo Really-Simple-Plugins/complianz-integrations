@@ -15,14 +15,14 @@ function cmplz_ctfw_googlemaps_script( $tags ) {
 		'urls' => array(
 			'maps.gstatic.com',
 			'maps.googleapis.com',
-			'ctfw-maps-js',
+			'/saved/framework/js/maps.js',
 		),
 		'enable_placeholder' => '1',
 		'placeholder_class' => 'ctfw-google-map',
 		'enable_dependency' => '1',
 		'dependency' => [
 			//'wait-for-this-script' => 'script-that-should-wait'
-			'maps.googleapis.com' => 'ctfw-maps-js',
+			'maps.googleapis.com' => '/saved/framework/js/maps.js',
 		],
 	);
 	return $tags;

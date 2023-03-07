@@ -1,6 +1,8 @@
 <?php
 defined( 'ABSPATH' ) or die( "you do not have access to this page!" );
-
+/**
+ * Draft for creating a Contact From 7 integration
+ */
 /**
  * Customize the error message on submission of the form before consent
  *

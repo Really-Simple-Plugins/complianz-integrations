@@ -68,6 +68,8 @@ function cmplz_enable_rolex(){
     document.querySelector('input.cmplz-rlx').checked = true;
     cmplz_set_cookie('rlx', 'allow');
     cmplz_set_rlx_cookie(true);
+    cmplz_enable_category('cmplz_rlx', false);
+
     if ( typeof _satellite === 'object') {
         _satellite.setVar("Analyticsconsent","true");
         _satellite.track("PageView");

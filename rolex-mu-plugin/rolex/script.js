@@ -11,7 +11,7 @@ function cmplz_set_rlx_cookie(value){
     let name = 'rlx-consent';
     date.setTime(date.getTime() + (complianz.cookie_expiry * 24 * 60 * 60 * 1000));
     let expires = ";expires=" + date.toGMTString();
-    document.cookie = name + "=" + value + ";SameSite=Lax" + secure + expires;
+    document.cookie = name + "=" + value + ";SameSite=Lax;path=/" + secure + expires;
 }
 
 /**

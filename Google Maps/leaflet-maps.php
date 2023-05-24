@@ -1,6 +1,8 @@
 <?php
 defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
 
+/* Integration with the Leaflet Map plugin (https://wordpress.org/plugins/leaflet-map/) */
+
 add_filter( 'cmplz_known_script_tags', 'cmplz_leafletmaps_directory_script' );
 function cmplz_leafletmaps_directory_script( $tags ) {
 	$tags[] = array(
@@ -15,7 +17,6 @@ function cmplz_leafletmaps_directory_script( $tags ) {
 		'enable_dependency' => '1',
 		'dependency' => [
 			//'wait-for-this-script' => 'script-that-should-wait'
-			'leaflet.js' => 'leaflet-gesture-handling-leafext.min.js',
 		],
 	);
 	return $tags;

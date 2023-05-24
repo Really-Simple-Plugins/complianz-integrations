@@ -14,7 +14,7 @@ function cmplz_leafletmaps_directory_script( $tags ) {
 		),
 		'enable_placeholder' => '1',
 		'placeholder_class' => 'leaflet-map',
-		'enable_dependency' => '1',
+		'enable_dependency' => '0',
 		'dependency' => [
 			//'wait-for-this-script' => 'script-that-should-wait'
 		],

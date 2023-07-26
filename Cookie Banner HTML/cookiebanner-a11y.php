@@ -4,38 +4,39 @@
  * If A/B testing is enabled, each banner is rendered per consenttype as well.
  */
 ?>
-<div class="cmplz-cookiebanner cmplz-hidden banner-{id} {consent_type} cmplz-{position} cmplz-categories-type-{use_categories}" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-{id}-{consent_type}" aria-describedby="cmplz-message-{id}-{consent_type}">
+<dialog class="cmplz-cookiebanner cmplz-hidden banner-{id} {consent_type} cmplz-{position} cmplz-categories-type-{use_categories}" data-nosnippet="true"  aria-live="polite" aria-labelledby="cmplz-header-{id}-{consent_type}" aria-describedby="cmplz-message-{id}-{consent_type}">
 	<div class="cmplz-header">
 		<div class="cmplz-logo">{logo}</div>
-		<div class="cmplz-title" id="cmplz-header-{id}-{consent_type}">{header}</div>
-		<a class="cmplz-close" tabindex="0" role="button">
+		<h2 class="cmplz-title" id="cmplz-header-{id}-{consent_type}">{header}</h2>
+		<button class="cmplz-close" tabindex="0" aria-label=" <?php __("close-dialog", "complianz-gdpr" ) ?>">
 			<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
-		</a>
+		</button>
 	</div>
 
 	<div class="cmplz-divider cmplz-divider-header"></div>
 	<div class="cmplz-body">
-		<div class="cmplz-message" id="cmplz-message-{id}-{consent_type}">{message_{consent_type}}</div>
+		<p class="cmplz-message" id="cmplz-message-{id}-{consent_type}">{message_{consent_type}}</p>
 		<!-- categories start -->
 		<div class="cmplz-categories">
 			<details class="cmplz-category cmplz-functional" >
 				<summary>
 						<span class="cmplz-category-header">
-							<span class="cmplz-category-title">{category_functional}</span>
+							<h3 class="cmplz-category-title">{category_functional}</h3>
 							<span class='cmplz-always-active'>
 								<span class="cmplz-banner-checkbox">
 									<input type="checkbox"
-									       aria-checked="true"
-									       id="cmplz-functional-{consent_type}"
-									       data-category="cmplz_functional"
-									       class="cmplz-consent-checkbox cmplz-functional"
-									       size="40"
-									       value="1"/>
-									<label class="cmplz-label" for="cmplz-functional-{consent_type}" tabindex="0"><span>{category_functional}</span></label>
+										   id="cmplz-functional-{consent_type}"
+										   data-category="cmplz_functional"
+										   class="cmplz-consent-checkbox cmplz-functional"
+										   size="40"
+										   value="1"/>
+									<label class="cmplz-label" for="cmplz-functional-{consent_type}" tabindex="0"><span class="screen-reader-text">{category_functional}</span></label>
 								</span>
 								<?php _e("Always active","complianz-gdpr")?>
 							</span>
-							<span class="cmplz-icon cmplz-open"></span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
 						</span>
 				</summary>
 				<div class="cmplz-description">
@@ -46,63 +47,69 @@
 			<details class="cmplz-category cmplz-preferences" >
 				<summary>
 						<span class="cmplz-category-header">
-							<span class="cmplz-category-title">{category_preferences}</span>
+							<h3 class="cmplz-category-title">{category_preferences}</h3>
 							<span class="cmplz-banner-checkbox">
 								<input type="checkbox"
-								       id="cmplz-preferences-{consent_type}"
-								       data-category="cmplz_preferences"
-								       class="cmplz-consent-checkbox cmplz-preferences"
-								       size="40"
-								       value="1"/>
-								<label class="cmplz-label" for="cmplz-preferences-{consent_type}" tabindex="0"><span>{category_preferences}</span></label>
+									   id="cmplz-preferences-{consent_type}"
+									   data-category="cmplz_preferences"
+									   class="cmplz-consent-checkbox cmplz-preferences"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-preferences-{consent_type}" tabindex="0"><span class="screen-reader-text">{category_preferences}</span></label>
 							</span>
-							<span class="cmplz-icon cmplz-open"></span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
 						</span>
 				</summary>
 				<div class="cmplz-description">
-					<span class="cmplz-description-preferences">{preferences_text}</span>
+					<p class="cmplz-description-preferences">{preferences_text}</p>
 				</div>
 			</details>
 
 			<details class="cmplz-category cmplz-statistics" >
 				<summary>
 						<span class="cmplz-category-header">
-							<span class="cmplz-category-title">{category_statistics}</span>
+							<h3 class="cmplz-category-title">{category_statistics}</h3>
 							<span class="cmplz-banner-checkbox">
 								<input type="checkbox"
-								       id="cmplz-statistics-{consent_type}"
-								       data-category="cmplz_statistics"
-								       class="cmplz-consent-checkbox cmplz-statistics"
-								       size="40"
-								       value="1"/>
-								<label class="cmplz-label" for="cmplz-statistics-{consent_type}" tabindex="0"><span>{category_statistics}</span></label>
+									   id="cmplz-statistics-{consent_type}"
+									   data-category="cmplz_statistics"
+									   class="cmplz-consent-checkbox cmplz-statistics"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-statistics-{consent_type}" tabindex="0"><span class="screen-reader-text">{category_statistics}</span></label>
 							</span>
-							<span class="cmplz-icon cmplz-open"></span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
 						</span>
 				</summary>
 				<div class="cmplz-description">
-					<span class="cmplz-description-statistics">{statistics_text}</span>
-					<span class="cmplz-description-statistics-anonymous">{statistics_text_anonymous}</span>
+					<p class="cmplz-description-statistics">{statistics_text}</p>
+					<p class="cmplz-description-statistics-anonymous">{statistics_text_anonymous}</p>
 				</div>
 			</details>
 			<details class="cmplz-category cmplz-marketing" >
 				<summary>
 						<span class="cmplz-category-header">
-							<span class="cmplz-category-title">{category_marketing}</span>
-								<span class="cmplz-banner-checkbox">
-									<input type="checkbox"
-									       id="cmplz-marketing-{consent_type}"
-									       data-category="cmplz_marketing"
-									       class="cmplz-consent-checkbox cmplz-marketing"
-									       size="40"
-									       value="1"/>
-									<label class="cmplz-label" for="cmplz-marketing-{consent_type}" tabindex="0"><span>{category_marketing}</span></label>
-								</span>
-							<span class="cmplz-icon cmplz-open"></span>
+							<h3 class="cmplz-category-title">{category_marketing}</h3>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-marketing-{consent_type}"
+									   data-category="cmplz_marketing"
+									   class="cmplz-consent-checkbox cmplz-marketing"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-marketing-{consent_type}" tabindex="0"><span class="screen-reader-text">{category_marketing}</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
 						</span>
 				</summary>
 				<div class="cmplz-description">
-					<span class="cmplz-description-marketing">{marketing_text}</span>
+					<p class="cmplz-description-marketing">{marketing_text}</p>
 				</div>
 			</details>
 		</div><!-- categories end -->
@@ -112,8 +119,8 @@
 	<div class="cmplz-links cmplz-information">
 		<a class="cmplz-link cmplz-manage-options cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container"><?php _e("Manage options","complianz-gdpr")?></a>
 		<a class="cmplz-link cmplz-manage-third-parties cookie-statement" href="#" data-relative_url="#cmplz-cookies-overview"><?php _e("Manage services","complianz-gdpr")?></a>
-		<a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper"><?php _e("Manage vendors","complianz-gdpr")?></a>
-		<a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/"><?php _e("Read more about these purposes","complianz-gdpr")?></a>
+		<a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper"><?php printf(__("Manage %s vendors","complianz-gdpr"),'{vendor_count}')?></a>
+		<a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/"><?php _e("Read more about these purposes","complianz-gdpr")?><span class="screen-reader-text">Cookiedatabase.org opens in a new window</span></a>
 		<?php do_action("cmplz_after_links")?>
 	</div>
 
@@ -134,4 +141,5 @@
 		<a class="cmplz-link impressum" href="#" data-relative_url="">{title}</a>
 		<?php do_action("cmplz_after_documents")?>
 	</div>
-</div>
+
+</dialog>

@@ -1,0 +1,64 @@
+<style>
+  .cmplz-cookiebanner .cmplz-body {
+    width: 100%;
+    grid-column: span 3;
+    overflow-y: unset; 
+    overflow-x: unset; 
+    max-height: 55vh;
+}
+.cmplz-cookiebanner .cmplz-categories .cmplz-category .cmplz-category-header .cmplz-banner-checkbox label > span {
+    display:unset;
+} 
+        
+.screen-reader-text {
+    position:absolute;
+    overflow:hidden;
+    clip: rect(0,0,0,0);
+    margin:0;
+    padding:0;
+    width:1px;
+    height:auto;
+    border:0;
+    white-space:nowrap;
+}
+</style>
+
+// Function to focus the dialog with class "cmplz-cookiebanner" when "cmplz-show" class is present
+function focusCookieBannerDialog() {
+    var cookieBanner = document.querySelector('.cmplz-cookiebanner');
+    if (cookieBanner && cookieBanner.classList.contains('cmplz-show')) {
+        cookieBanner.setAttribute('tabindex', '-1');
+        cookieBanner.focus();
+    }
+}
+
+function focusCookieBannerInnerDialog() {
+    var cookieElement = document.querySelector('.cmplz-category-title');
+    if (cookieElement && cookieBanner.classList.contains('mplz-categories-visible')) {
+        cookieElement.setAttribute('tabindex', '-1');
+        cookieElement.focus();
+    }
+}
+
+// Call the function initially to check if the dialog is shown on page load
+
+	if ( !cmplz_is_hidden(catsContainer) ){
+		saveSettings.style.display='none';
+		manageSettings.style.display = 'block';
+		catsContainer.style.display='none';
+	} 
+ focusCookieBannerInnerDialog();
+
+
+// Call the function initially to check if the dialog is shown on page load
+focusCookieBannerDialog();
+
+// Assuming there is some event that triggers the appearance of the dialog,
+// you can also call the function whenever that event occurs, like this:
+// Example: when a button is clicked
+cmplz_add_event('click', 'button.cmplz-manage-consent', function(e){
+    // Code to show the dialog (e.g., add 'cmplz-show' class to the cookie banner)
+    // ...
+    // Call the function to focus the dialog
+    focusCookieBannerDialog();
+});

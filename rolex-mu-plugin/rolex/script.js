@@ -70,10 +70,11 @@ function cmplz_enable_rolex(){
     cmplz_set_rlx_cookie(true);
     cmplz_enable_category('cmplz_rlx', false);
 
-    if ( typeof _satellite === 'object') {
-        _satellite.setVar("Analyticsconsent","true");
-        _satellite.track("PageView");
-    }
+    // August Update 2023
+    // if ( typeof _satellite === 'object') {
+    //     _satellite.setVar("Analyticsconsent","true");
+    //     _satellite.track("PageView");
+    // }
 
     let rlxCorner = document.getElementById("rlx-corner");
     if ( rlxCorner ) {
@@ -86,9 +87,15 @@ function cmplz_enable_rolex(){
 function cmplz_revoke_rolex(){
     console.log("revoke rolex consent");
     cmplz_set_cookie('rlx', 'deny');
-    if ( typeof _satellite === 'object') {
-        _satellite.setVar("Analyticsconsent","false");
+    // August Update 2023
+    let rlxCorner = document.getElementById("rlx-corner");
+    if ( rlxCorner ) {
+      document.getElementById("rlxcorner").contentWindow.postMessage("consentFalse","https://corners.rolex.com");
     }
+    // if ( typeof _satellite === 'object') {
+    //     _satellite.setVar("Analyticsconsent","false");
+    // }
+
     cmplz_set_rlx_cookie(false);
     cmplz_rolex_enabled = false;
 }

@@ -43,8 +43,6 @@ document.addEventListener("cmplz_fire_categories", function (e) {
 	});
 });
 
-
-
 document.addEventListener("cmplz_revoke", function (e) {
 	gtag('consent', 'update', {
 		'security_storage': "granted",

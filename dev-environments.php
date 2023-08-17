@@ -2,10 +2,10 @@
 // Add custom subdomains to the list of subdomains that are allowed for testing
 // Not for use in the plugin, do a pull request if your staging environment is not listed.
 function rsp_custom_subdomains( $subdomains ){
-	$subdomains[] = 'staging.';
-	$subdomains[] = '*.dev.';
-	$subdomains[] = '*.test.';
-	$subdomains[] = '*.stg.';
+	$subdomains[] = 'staging.*';
+	$subdomains[] = '*.dev.*';
+	$subdomains[] = '*.test.*';
+	$subdomains[] = '*.stg.*';
 	$subdomains[] = 'stg.*';
 	$subdomains[] = 'test.*';
 	$subdomains[] = 'beta.*';

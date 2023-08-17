@@ -10,6 +10,9 @@ function rsp_custom_subdomains( $subdomains ){
 	$subdomains[] = 'test.*';
 	$subdomains[] = 'beta.*';
 	$subdomains[] = 'acceptatie.*';
+	$subdomains[] = '*preprod.*';
+	$subdomains[] = 'localhost';
+	$subdomains[] = '*.lndo.site';
 
 	return $subdomains;
 }

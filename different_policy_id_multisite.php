@@ -10,7 +10,11 @@
  * @return void
  */
 function cmplz_my_save_policy_id_as_default_option($value, $old_value, $option, $network_id) {
+	if (empty($value)){
+		$value = 1;
+	}
 	update_option('complianz_active_policy_id', $value);
+
 	return $old_value;
 }
 add_filter('pre_update_site_option_complianz_active_policy_id', 'cmplz_my_save_policy_id_as_default_option', 10, 4 );

@@ -28,6 +28,10 @@ add_filter('pre_update_site_option_complianz_active_policy_id', 'cmplz_my_save_p
  * @return false|mixed|null
  */
 function cmplz_my_get_default_option($value, $option, $network_id){
-	return get_option('complianz_active_policy_id');
+	$policy_id = get_option('complianz_active_policy_id');
+	if (empty($policy_id)){
+		$policy_id = 1;
+	}
+	return $policy_id;
 }
 add_filter('site_option_complianz_active_policy_id', 'cmplz_my_get_default_option', 10, 3);

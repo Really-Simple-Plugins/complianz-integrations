@@ -3,15 +3,18 @@
 function cmplz_dismiss_tcf_banner() {
 	ob_start(); ?>
 	<script>
-        if ( document.querySelector('.cmplz-document.cookie-statement') ){
-            const wrapper = document.createElement('div');
-            wrapper.innerHTML = '<a href="javascript:history.back()">Go Back</a>';
-            wrapper.classList.add('cmplz-back-button');
-            wrapper.style.position = 'fixed';
-            wrapper.style.bottom = 0;
-            wrapper.style.right = "30px";
-            document.body.appendChild(wrapper);
-        }
+        document.addEventListener('cmplz_cookie_warning_loaded', function (e) {
+            if ( document.querySelector('.cmplz-document.cookie-statement') ){
+                const wrapper = document.createElement('div');
+                wrapper.innerHTML = '<a href="javascript:history.back()">Go Back</a>';
+                wrapper.classList.add('cmplz-back-button');
+                wrapper.style.position = 'fixed';
+                wrapper.style.bottom = 0;
+                wrapper.style.right = "30px";
+                document.body.appendChild(wrapper);
+            }
+        });
+
 
         setInterval(function(){
             if (cmplz_get_banner_status() ==='dismissed') {

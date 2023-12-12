@@ -1,6 +1,8 @@
 <?php
-
-function cmplz_create_headless_js_file() {
+//you can use the below hook to generate the html and js file on complianz settings save
+//alternatively, you can run the function from a cron job, or run when you want to update the files
+add_action('cmplz_after_saved_fields', 'cmplz_create_headless_js_file', 10, 1);
+function cmplz_create_headless_js_file($fields=[]) {
 
 	$banner = new CMPLZ_COOKIEBANNER( apply_filters( 'cmplz_user_banner_id', cmplz_get_default_banner_id() ) );
 	$cookiesettings = $banner->get_front_end_settings();
